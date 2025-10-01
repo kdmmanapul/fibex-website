@@ -13,26 +13,26 @@ const geistMono = Geist_Mono({
 });
 
 // Define custom fonts
-const originHeavy = {
-  fontFamily: 'Origin Heavy',
-  src: 'url(/fonts/Origin Heavy.otf)',
-  fontWeight: '900',
-  fontStyle: 'normal',
-};
+// const originHeavy = {
+//   fontFamily: 'Origin Heavy',
+//   src: 'url(/fonts/Origin Heavy.otf)',
+//   fontWeight: '900',
+//   fontStyle: 'normal',
+// };
 
-const montserratRegular = {
-  fontFamily: 'Montserrat',
-  src: 'url(/fonts/Montserrat-Regular.otf)',
-  fontWeight: '400',
-  fontStyle: 'normal',
-};
+// const montserratRegular = {
+//   fontFamily: 'Montserrat',
+//   src: 'url(/fonts/Montserrat-Regular.otf)',
+//   fontWeight: '400',
+//   fontStyle: 'normal',
+// };
 
-const montserratSemiBold = {
-  fontFamily: 'Montserrat',
-  src: 'url(/fonts/Montserrat-SemiBold.otf)',
-  fontWeight: '600',
-  fontStyle: 'normal',
-};
+// const montserratSemiBold = {
+//   fontFamily: 'Montserrat',
+//   src: 'url(/fonts/Montserrat-SemiBold.otf)',
+//   fontWeight: '600',
+//   fontStyle: 'normal',
+// };
 
 export const metadata: Metadata = {
   title: "FibeX - Honest & Reliable Internet for Filipinos",

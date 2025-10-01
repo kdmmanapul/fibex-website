@@ -1,31 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Shield, Zap, Globe, Users, TrendingUp, Star, CreditCard, Smartphone, BarChart3, Lock, Clock, Award, ChevronDown, Play, Quote, Mail, Phone, MapPin, Wifi, Gamepad2, Monitor, Download, Upload, Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ArrowRight, CheckCircle, Shield, Zap, Globe, Users, TrendingUp, Star, ChevronDown, Quote, Mail, Phone, MapPin, Wifi, Gamepad2, Monitor, Download, Upload, Menu, X } from "lucide-react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Home() {
-  const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" }
-  };
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -425,7 +406,7 @@ export default function Home() {
                     { label: "500", color: "bg-[#0052CC]", width: "w-24" },
                     { label: "750", color: "bg-[#0052CC]", width: "w-28" },
                     { label: "1000", color: "bg-[#0052CC]", width: "w-32" }
-                  ].map((bar, index) => (
+                  ].map((bar) => (
                     <div key={bar.label} className="flex items-center space-x-4">
                       <div className="w-8 text-sm font-medium text-gray-600">{bar.label}</div>
                       <div className={`h-4 ${bar.width} ${bar.color} rounded-sm`}></div>
@@ -696,7 +677,7 @@ export default function Home() {
               Gaming Internet Plans
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose the perfect plan for your gaming needs. From casual gaming to competitive esports, we've got you covered.
+              Choose the perfect plan for your gaming needs. From casual gaming to competitive esports, we&apos;ve got you covered.
             </p>
           </motion.div>
 
@@ -762,7 +743,7 @@ export default function Home() {
               How It Works
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Get connected with FibeX in just three simple steps and experience internet that's honest and reliable.
+              Get connected with FibeX in just three simple steps and experience internet that&apos;s honest and reliable.
             </p>
           </motion.div>
 
@@ -931,7 +912,7 @@ export default function Home() {
                   ))}
                 </div>
                 <Quote className="w-8 h-8 text-white/50 mb-4" />
-                <p className="text-white/90 mb-6 italic">"{testimonial.content}"</p>
+                <p className="text-white/90 mb-6 italic">&quot;{testimonial.content}&quot;</p>
                 <div>
                   <h4 className="text-white font-semibold">{testimonial.name}</h4>
                   <p className="text-blue-200">{testimonial.role}</p>
@@ -1268,7 +1249,7 @@ export default function Home() {
               Get in Touch
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
             </p>
           </motion.div>
 
