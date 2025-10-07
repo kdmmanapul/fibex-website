@@ -22,26 +22,27 @@ export default function Home() {
             <motion.div 
               className="flex items-center space-x-3"
               whileHover={{ scale: 1.05 }}
+              style={{ height: "100%" }}
             >
-              {/* <Image
-                src="/logos/blue_logo.png"
-                alt="FibeX Logo"
-                width={40}
-                height={40}
-                className="w-8 h-8 sm:w-10 sm:h-10"
-              /> */}
-              <span className="text-xl sm:text-2xl font-bold text-[#0052CC]" style={{ fontFamily: 'Origin Heavy' }}>
-                F I B E X
-              </span>
+              <div className="h-full flex items-center">
+                <Image
+                  src="/logos/blue_logo.png"
+                  alt="FibeX Logo"
+                  fill={false}
+                  width={120}
+                  height={120}
+                  priority
+                />
+              </div>
             </motion.div>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-6 lg:space-x-8">
-              {["ENGLISH", "LEARN", "DATA", "ABOUT"].map((item) => (
+              {["ABOUT", "SERVICES", "CONTACT"].map((item) => (
                 <motion.a
                   key={item}
                   href="#"
-                  className="text-gray-700 hover:text-[#0052CC] transition-colors duration-200 font-medium text-sm lg:text-base"
+                  className="text-gray-700 hover:text-[#0052CC] transition-colors duration-200 font-heavy text-sm lg:text-base tracking-wide"
                   whileHover={{ y: -2 }}
                 >
                   {item}
@@ -203,15 +204,15 @@ export default function Home() {
             >
               <div className="space-y-8">
                 <motion.h1
-                  className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-black leading-[0.9] tracking-tight"
+                  className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-black leading-[0.9] tracking-tight"
                   style={{ fontFamily: 'Origin Heavy' }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  Zero lags,{" "}
+                  TRUE SPEED,{" "}
                   <br className="hidden sm:block" />
-                  <span className="text-[#1A50FF]">Stable wins</span>
+                  <span className="text-[#1A50FF]">TRUE CONNECTION</span>
                 </motion.h1>
                 
                 <motion.p
@@ -220,7 +221,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  Your journey starts here
+                  Fast, transparent, and made for every Filipino household.
                 </motion.p>
               </div>
 
@@ -377,7 +378,7 @@ export default function Home() {
               FIBEX SPEED TEST
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Experience the speed difference. Test your connection and see why gamers choose FibeX.
+              Test it. Don&apos;t take our word for it.
             </p>
           </motion.div>
 
@@ -562,19 +563,19 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ fontFamily: 'Origin Heavy' }}>
-              Why Gamers Choose FibeX?
+              Why Filipinos are switching to FibeX:
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Built for gamers, by gamers. Experience the difference with internet that delivers on its promises.
+              Experience the difference with internet that delivers on its promises.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Gamepad2, title: "Zero Lag Gaming", description: "Ultra-low latency for competitive gaming" },
-              { icon: Zap, title: "Real Speed", description: "Actual speeds that match our promises" },
-              { icon: Shield, title: "No Hidden Fees", description: "Transparent pricing, always" },
-              { icon: Star, title: "Gamer Approved", description: "Trusted by esports professionals" }
+              { icon: Gamepad2, title: "True Speed", description: "What we promise, you actually get." },
+              { icon: Zap, title: "No Hidden Fees", description: "No lock-ins. No fine print. No runarounds." },
+              { icon: Shield, title: "Real Service", description: "We actually pick up the phone." },
+              { icon: Star, title: "For the People", description: "From barangays to condos - WiFi for all." }
             ].map((stat, index) => (
               <motion.div
                 key={stat.title}
@@ -674,10 +675,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ fontFamily: 'Origin Heavy' }}>
-              Gaming Internet Plans
+              FibeX Internet Plans
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose the perfect plan for your gaming needs. From casual gaming to competitive esports, we&apos;ve got you covered.
+              Pick what fits your lifestyle - nothing more, nothing less.
             </p>
           </motion.div>
 
@@ -743,7 +744,7 @@ export default function Home() {
               How It Works
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Get connected with FibeX in just three simple steps and experience internet that&apos;s honest and reliable.
+              Fast setup. Real people. No hassle.
             </p>
           </motion.div>
 
@@ -924,8 +925,8 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 bg-gray-50 relative overflow-hidden">
-        {/* Animated Background Assets */}
+      {/* <section className="py-20 bg-gray-50 relative overflow-hidden">
+  
         <div className="absolute inset-0 z-0">
           <motion.div
             className="absolute top-10 left-20 opacity-10"
@@ -1080,7 +1081,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
       <section className="py-20 bg-white">
@@ -1102,24 +1103,20 @@ export default function Home() {
           <div className="space-y-4">
             {[
               {
-                question: "Is FibeX internet reliable?",
-                answer: "Yes! FibeX provides 99.9% uptime with reliable connections across the Philippines. We use advanced infrastructure to ensure your internet stays connected when you need it most."
+                question: "Is Fibex available in my area?",
+                answer: "Check your barangay or condo — we’re expanding fast."
               },
               {
-                question: "How quickly can I get connected?",
-                answer: "We can install your FibeX internet connection within 3-5 business days after plan selection. Our technicians will schedule a convenient time that works for you."
+                question: "Do I need to sign a contract?",
+                answer: "Nope. You stay because you’re happy, not because you’re locked in."
               },
               {
-                question: "Are there really no hidden fees?",
-                answer: "Absolutely! FibeX believes in transparent pricing. What you see is what you pay - no hidden charges, no surprise fees, no fine print tricks."
+                question: "What if my connection slows down?",
+                answer: "Message us. We’ll fix it fast — and if we don’t, your next bill’s on us."
               },
               {
-                question: "What areas does FibeX cover?",
-                answer: "FibeX provides internet service across major cities and provinces in the Philippines. Check our coverage map or contact us to confirm availability in your area."
-              },
-              {
-                question: "What if I have technical issues?",
-                answer: "Our 24/7 customer support team is always ready to help. Whether it's connection issues or technical questions, we provide human customer care that actually solves problems."
+                question: "Are there hidden fees?",
+                answer: "None. What you see is what you pay. Always."
               }
             ].map((faq, index) => (
               <motion.div
@@ -1219,10 +1216,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{ fontFamily: 'Origin Heavy' }}>
-              Ready to Dominate Your Games?
+              Fast, fair, and made for you.
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join thousands of Filipino gamers who trust FibeX for lag-free gaming and reliable internet performance.
+              Switch to Fibex today.
             </p>
             <motion.button
               className="bg-white text-[#0052CC] px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center gap-2 mx-auto group"
@@ -1249,7 +1246,7 @@ export default function Home() {
               Get in Touch
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
+              We actually pick up the phone.
             </p>
           </motion.div>
 
@@ -1268,7 +1265,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Email</h4>
-                    <p className="text-gray-600">hello@fibex.com</p>
+                    <p className="text-gray-600">support@fibex.ph</p>
                   </div>
                 </div>
                 <div className="flex items-center">
@@ -1277,7 +1274,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Phone</h4>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <p className="text-gray-600">(02) 800-FIBEX</p>
                   </div>
                 </div>
                 <div className="flex items-center">
@@ -1285,8 +1282,8 @@ export default function Home() {
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Address</h4>
-                    <p className="text-gray-600">123 Financial District<br />New York, NY 10004</p>
+                    <h4 className="font-semibold text-gray-900">Facebook Messenger</h4>
+                    <p className="text-gray-600">@FibexPH</p>
                   </div>
                 </div>
               </div>
@@ -1372,7 +1369,7 @@ export default function Home() {
                 <h3 className="text-3xl font-bold text-[#0052CC]" style={{ fontFamily: 'Origin Heavy' }}>FIBEX</h3>
               </div>
               <p className="text-gray-400 mb-6 max-w-md">
-                Revolutionizing gaming internet for Filipinos. Join thousands of gamers who trust FibeX for lag-free performance and honest service.
+                Fast, transparent, and made for every Filipino household.
               </p>
               <div className="flex space-x-4">
                 {['Twitter', 'LinkedIn', 'Facebook', 'Instagram'].map((social) => (
@@ -1390,11 +1387,10 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-6 text-lg">Products</h4>
               <ul className="space-y-3 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Gaming Plans</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Internet Plans</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Speed Test</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Esports Support</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Coverage Areas</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Gaming Support</a></li>
               </ul>
             </div>
             <div>
@@ -1419,7 +1415,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400">&copy; 2024 FibeX. All rights reserved.</p>
+            <p className="text-gray-400">&copy; 2025 FibeX. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a>
