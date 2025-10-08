@@ -685,19 +685,19 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: Gamepad2,
+                logo: "/logos/Fibex_Go.svg",
                 title: "Gaming Starter",
                 description: "Perfect for casual gaming and streaming. Low latency, stable connection for everyday gaming.",
                 features: ["Up to 100 Mbps", "Unlimited data", "Gaming-optimized routing", "24/7 support"]
               },
               {
-                icon: Monitor,
+                logo: "/logos/Fibex_Rush.svg",
                 title: "Gaming Pro",
                 description: "Ideal for competitive gaming and content creation. Ultra-low latency for esports.",
                 features: ["Up to 500 Mbps", "Priority gaming traffic", "Static IP option", "Dedicated support"]
               },
               {
-                icon: Zap,
+                logo: "/logos/Fibex_Blaze.svg",
                 title: "Gaming Elite",
                 description: "For professional gamers and streamers. Maximum performance for tournaments and streaming.",
                 features: ["Up to 1000 Mbps", "Zero-lag guarantee", "Premium routing", "White-glove service"]
@@ -712,8 +712,14 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 whileHover={{ y: -10, scale: 1.02 }}
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-[#0052CC] to-[#F12400] rounded-2xl flex items-center justify-center mb-6">
-                  <product.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                  <Image
+                    src={product.logo}
+                    alt={`${product.title} Logo`}
+                    width={48}
+                    height={48}
+                    className="w-10 h-10"
+                  />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{product.title}</h3>
                 <p className="text-gray-600 mb-6">{product.description}</p>
@@ -722,7 +728,7 @@ export default function Home() {
                     <li key={featureIndex} className="flex items-center text-gray-700">
                       <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
                       {feature}
-          </li>
+                    </li>
                   ))}
                 </ul>
               </motion.div>
