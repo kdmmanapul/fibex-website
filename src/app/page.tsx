@@ -686,19 +686,19 @@ export default function Home() {
             {[
               {
                 logo: "/logos/Fibex_Go.svg",
-                title: "Gaming Starter",
+                title: "FibeX Go",
                 description: "Perfect for casual gaming and streaming. Low latency, stable connection for everyday gaming.",
                 features: ["Up to 100 Mbps", "Unlimited data", "Gaming-optimized routing", "24/7 support"]
               },
               {
                 logo: "/logos/Fibex_Rush.svg",
-                title: "Gaming Pro",
+                title: "FibeX Rush",
                 description: "Ideal for competitive gaming and content creation. Ultra-low latency for esports.",
                 features: ["Up to 500 Mbps", "Priority gaming traffic", "Static IP option", "Dedicated support"]
               },
               {
                 logo: "/logos/Fibex_Blaze.svg",
-                title: "Gaming Elite",
+                title: "FibeX Blaze",
                 description: "For professional gamers and streamers. Maximum performance for tournaments and streaming.",
                 features: ["Up to 1000 Mbps", "Zero-lag guarantee", "Premium routing", "White-glove service"]
               }
