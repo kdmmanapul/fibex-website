@@ -153,45 +153,48 @@ const testimonials = [
     name: "Maria Santos",
     location: "San Fernando, Pampanga",
     plan: "FIBEX BLAZE",
-    avatar: "/stuffs/reference/assets/avatar-maria.svg",
     text: "Finally, an ISP that actually delivers what they promise! I signed up for the BLAZE plan and my connection has been rock-solid since day one. No more buffering during our family video calls.",
   },
   {
     name: "Jomar Reyes",
     location: "Macabebe, Pampanga",
     plan: "FIBEX RUSH",
-    avatar: "/stuffs/reference/assets/avatar-jomar.svg",
     text: "Nagtatrabaho ako sa bahay at dati palagi akong nag-a-apologize sa mga clients dahil sa connection. Since lumipat sa FibeX, wala na. Consistent speed, laging stable.",
   },
   {
     name: "Cafe de Pampa",
     location: "Apalit, Pampanga",
     plan: "BUSINESS PRO",
-    avatar: "/stuffs/reference/assets/avatar-cafe.svg",
     text: "We run a cafe and needed stable WiFi for both our POS system and customers. FibeX Business Pro has been flawless. Installation was fast, support is responsive. Highly recommend!",
   },
   {
     name: "Angelo Cruz",
     location: "Bitas, Pampanga",
     plan: "FIBEX TURBO",
-    avatar: "/stuffs/reference/assets/avatar-angelo.svg",
     text: "Hindi ko inexpect na ganito ka-consistent ang connection. Gaming, streaming, work — kaya ng kaya. Worth every peso. No hidden charges, exactly as advertised.",
   },
   {
     name: "Dr. Liza Mendoza",
     location: "San Fernando, Pampanga",
     plan: "BUSINESS PLUS",
-    avatar: "/stuffs/reference/assets/avatar-liza.svg",
     text: "Our clinic's telemedicine setup needed a reliable connection. FibeX delivered. The team was professional and the setup was clean. We've had zero downtime in months.",
   },
   {
     name: "Ryan Buenaventura",
     location: "Masantol, Pampanga",
     plan: "FIBEX ELITE",
-    avatar: "/stuffs/reference/assets/avatar-ryan.svg",
     text: "Matagal na kaming walang maaasahang internet dito sa amin. FibeX ang unang nagbigay ng tunay na fiber sa area namin. Grabe ang improvement sa aming pang-araw-araw.",
   },
 ];
+
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+}
 
 const contacts = [
   { label: "Email", value: "sales@fibexph.com", note: "For plan inquiries & applications", icon: Mail },
@@ -658,7 +661,9 @@ function Testimonials() {
               <p className="mt-4 flex-1 text-sm leading-7 text-black/70">{item.text}</p>
               <div className="mt-6 flex items-center justify-between gap-4 border-t border-black/10 pt-4">
                 <div className="flex min-w-0 items-center gap-3">
-                  <Image src={item.avatar} alt={item.name} width={44} height={44} className="h-11 w-11 rounded-full border-2 border-black/10" />
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-black/10 bg-[#0119FE] text-xs font-bold tracking-[0.08em] text-white">
+                    {getInitials(item.name)}
+                  </div>
                   <div className="min-w-0">
                     <div className="truncate text-sm font-semibold text-black">{item.name}</div>
                     <div className="mt-1 truncate text-xs text-black/45">{item.location}</div>
