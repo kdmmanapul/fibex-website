@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -34,9 +34,89 @@ const geistMono = Geist_Mono({
 //   fontStyle: 'normal',
 // };
 
+const SITE_NAME = "FibeX";
+const SITE_TITLE = "FibeX — Honest & Reliable Internet for Filipinos";
+const SITE_DESCRIPTION =
+  "Every Filipino deserves internet that's honest, reliable, and truly felt. No fine print. No exaggerated claims. Just clear plans, fair pricing, and customer care that actually shows up.";
+const SITE_URL = "https://fibex.ph";
+
 export const metadata: Metadata = {
-  title: "FibeX - Honest & Reliable Internet for Filipinos",
-  description: "Every Filipino deserves internet that's honest, reliable, and truly felt. No fine print. No exaggerated claims. Just clear plans, fair pricing, and customer care that actually shows up.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  generator: "Next.js",
+  keywords: [
+    "FibeX",
+    "FibeX Turbo",
+    "Philippines internet",
+    "Filipino ISP",
+    "fiber internet Philippines",
+    "honest internet",
+    "reliable internet",
+    "unlimited data",
+    "gaming internet",
+    "fiber optic Philippines",
+  ],
+  authors: [{ name: "FibeX Turbo Inc." }],
+  creator: "FibeX Turbo Inc.",
+  publisher: "FibeX Turbo Inc.",
+  category: "Telecommunications",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/logos/Emblem.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/logos/Emblem.svg",
+    apple: "/logos/Emblem.svg",
+  },
+  manifest: undefined,
+  openGraph: {
+    type: "website",
+    locale: "en_PH",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/logos/blue_logo.png",
+        width: 1200,
+        height: 630,
+        alt: "FibeX — True Speed, True Connection",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/logos/blue_logo.png"],
+    creator: "@FibexPH",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#04080F" },
+  ],
+  colorScheme: "dark light",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

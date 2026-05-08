@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Fibex — True Speed. True Connection.</title>
+<style>
+@font-face {
+  font-family: 'Origin';
+  src: url('./fonts/Origin-Heavy.otf') format('opentype');
+  font-weight: 900;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./fonts/Montserrat-Regular.otf') format('opentype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./fonts/Montserrat-SemiBold.otf') format('opentype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Baufra';
+  src: url('./fonts/Baufra-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+* { margin: 0; box-sizing: border-box; }
+body { font-family: 'Montserrat', sans-serif; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+@page { size: A4 landscape; margin: 0; }
+
+.page {
+  width: 297mm;
+  height: 210mm;
+  position: relative;
+  overflow: hidden;
+  break-after: page;
+  break-inside: avoid;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── PAGE 1: HERO ──────────────────────────────────────── */
+.page-hero {
+  background: #fff;
+  flex-direction: row;
+}
+.hero-left {
+  background: #fff;
+  flex: 1;
+  padding: 48px 48px 48px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-family: 'Baufra', sans-serif;
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #0119FE;
+  margin-bottom: 16px;
+}
+.hero-h1 {
+  font-family: 'Origin', sans-serif;
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: #000;
+  margin-bottom: 4px;
+}
+.hero-h1 span { color: #0119FE; }
+.hero-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #555;
+  margin-top: 12px;
+  line-height: 1.65;
+  max-width: 320px;
+}
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+}
+.hero-stat-num {
+  font-family: 'Origin', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  color: #000;
+  line-height: 1;
+}
+.hero-stat-label {
+  font-family: 'Baufra', sans-serif;
+  font-weight: 700;
+  font-size: 8px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #999;
+  margin-top: 4px;
+}
+.hero-right {
+  background: #0119FE;
+  width: 320px;
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+.hero-speech {
+  font-family: 'Origin', sans-serif;
+  font-weight: 900;
+  font-size: 44px;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.hero-price-pill {
+  background: #F12400;
+  color: #fff;
+  font-family: 'Origin', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  display: inline-block;
+}
+.hero-price-note {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 6px;
+  line-height: 1.6;
+}
+.hero-price-note strong { color: #fff; }
+.hero-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.hero-logo svg { display: block; }
+
+/* ── PAGE 2: PLANS ─────────────────────────────────────── */
+.page-plans {
+  background: #f5f5f5;
+  padding: 48px 56px;
+}
+.plans-header { text-align: center; margin-bottom: 36px; }
+.plans-eyebrow {
+  font-family: 'Baufra', sans-serif; font-weight: 700;
+  font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: #0119FE; margin-bottom: 10px;
+}
+.plans-h2 {
+  font-family: 'Origin', sans-serif; font-weight: 900;
+  font-size: 42px; color: #000; line-height: 1.05;
+  letter-spacing: -0.01em; margin-bottom: 6px;
+}
+.plans-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; color: #666;
+}
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  flex: 1;
+}
+.plan-card {
+  border-radius: 20px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.plan-card-label {
+  font-family: 'Baufra', sans-serif; font-weight: 700;
+  font-size: 8px; letter-spacing: 0.35em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.plan-card-name {
+  font-family: 'Origin', sans-serif; font-weight: 700;
+  font-size: 14px; margin-bottom: 14px; line-height: 1.2;
+}
+.plan-speed-num {
+  font-family: 'Origin', sans-serif; font-weight: 900;
+  font-size: 52px; line-height: 1; letter-spacing: -0.03em;
+  color: rgb(255,255,255);
+}
+.plan-speed-unit {
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  font-size: 14px; color: rgb(255,255,255);
+}
+.plan-divider { border: none; border-top: 1px solid; opacity: 0.15; margin: 14px 0; }
+.plan-price {
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  font-size: 16px; margin-top: auto; margin-bottom: 4px;
+}
+.plan-note {
+  font-family: 'Montserrat', sans-serif; font-size: 10px; opacity: 0.5;
+}
+.plan-feature {
+  font-family: 'Montserrat', sans-serif; font-size: 11px;
+  opacity: 0.75; margin-bottom: 5px;
+  display: flex; align-items: center; gap: 6px;
+}
+.plan-disclaimer {
+  text-align: center; margin-top: 20px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px; color: #888;
+}
+
+/* ── PAGE 3: ABOUT ─────────────────────────────────────── */
+.page-about {
+  background: #000;
+  padding: 56px;
+  flex-direction: row;
+  gap: 64px;
+}
+.about-left { flex: 1; }
+.about-eyebrow {
+  font-family: 'Baufra', sans-serif; font-weight: 700;
+  font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 20px;
+}
+.about-h1 {
+  font-family: 'Origin', sans-serif; font-weight: 900;
+  font-size: 52px; color: #fff; line-height: 1.0;
+  letter-spacing: -0.02em; margin-bottom: 20px;
+}
+.about-h1 span { color: #0119FE; }
+.about-body {
+  font-family: 'Montserrat', sans-serif; font-size: 13px;
+  color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 12px;
+  max-width: 400px;
+}
+.about-stats {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px; margin-top: 32px;
+}
+.about-stat {
+  background: rgba(255,255,255,0.06);
+  border-radius: 16px; padding: 20px;
+}
+.about-stat-num {
+  font-family: 'Origin', sans-serif; font-weight: 900;
+  font-size: 32px; color: #fff; line-height: 1;
+}
+.about-stat-label {
+  font-family: 'Baufra', sans-serif; font-weight: 700;
+  font-size: 8px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-top: 6px;
+}
+.about-right { width: 280px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.about-value {
+  border-top: 2px solid rgba(255,255,255,0.12);
+  padding-top: 16px;
+}
+.about-value-title {
+  font-family: 'Origin', sans-serif; font-weight: 900;
+  font-size: 18px; color: #fff; margin-bottom: 6px;
+}
+.about-value-desc {
+  font-family: 'Montserrat', sans-serif; font-size: 12px;
+  color: rgba(255,255,255,0.5); line-height: 1.6;
+}
+
+/* ── PAGE 4: CONTACT ───────────────────────────────────── */
+.page-contact {
+  background: #0119FE;
+  padding: 56px;
+  flex-direction: row;
+  gap: 48px;
+  align-items: stretch;
+}
+.contact-left { flex: 1; }
+.contact-eyebrow {
+  font-family: 'Baufra', sans-serif; font-weight: 700;
+  font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-bottom: 16px;
+}
+.contact-h1 {
+  font-family: 'Origin', sans-serif; font-weight: 900;
+  font-size: 52px; color: #fff; line-height: 1.0;
+  letter-spacing: -0.02em; margin-bottom: 20px;
+}
+.contact-sub {
+  font-family: 'Montserrat', sans-serif; font-size: 14px;
+  color: rgba(255,255,255,0.65); line-height: 1.75;
+  max-width: 380px; margin-bottom: 36px;
+}
+.contact-items { display: flex; flex-direction: column; gap: 18px; }
+.contact-item { display: flex; gap: 14px; align-items: flex-start; }
+.contact-item-label {
+  font-family: 'Baufra', sans-serif; font-weight: 700;
+  font-size: 8px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 4px;
+}
+.contact-item-value {
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  font-size: 14px; color: #fff;
+}
+.contact-right {
+  background: #fff;
+  border-radius: 24px;
+  padding: 40px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-card-eyebrow {
+  font-family: 'Baufra', sans-serif; font-weight: 700;
+  font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: #0119FE; margin-bottom: 12px;
+}
+.contact-card-h2 {
+  font-family: 'Origin', sans-serif; font-weight: 900;
+  font-size: 28px; color: #000; line-height: 1.05; margin-bottom: 20px;
+}
+.hours-row {
+  display: flex; justify-content: space-between;
+  font-family: 'Montserrat', sans-serif; font-size: 12px;
+  color: #555; margin-bottom: 8px;
+}
+.hours-day { font-weight: 600; color: #000; }
+.tagline-bar {
+  background: #F12400;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+.tagline-text {
+  font-family: 'Origin', sans-serif; font-weight: 900;
+  font-size: 14px; color: #fff; letter-spacing: -0.01em;
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: HERO -->
+<div class="page page-hero">
+  <div class="hero-left">
+    <div class="hero-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 106.71 110.76" width="32" height="32" fill="#0119FE">
+        <path d="M94.76,83.09l-10.29,10.25c-3.83,3.81-10.01,3.81-13.82-.01l-10.05-10.09c-3.81-3.83-3.81-10.01.02-13.83l6-5.97c3.83-3.81,3.83-10,.03-13.82l-9.67-9.69c-3.81-3.82-3.79-10.01.03-13.82L80.11,3.1c3.82-3.81,10-3.8,13.81.01l9.68,9.68c3.82,3.82,3.82,10.02-.01,13.83l-18.82,18.75c-3.83,3.81-3.83,10-.02,13.83l10.04,10.08c3.81,3.82,3.8,10-.02,13.81Z"/>
+        <path d="M11.95,27.67l10.29-10.25c3.83-3.81,10.01-3.81,13.82.01l10.05,10.09c3.81,3.83,3.81,10.01-.02,13.83l-6,5.97c-3.83,3.81-3.83,10-.03,13.82l9.67,9.69c3.81,3.82,3.79,10.01-.03,13.82l-23.09,23.02c-3.82,3.81-10,3.8-13.81-.01l-9.68-9.68c-3.82-3.82-3.82-10.02.01-13.83l18.82-18.75c3.83-3.81,3.83-10,.02-13.83l-10.04-10.08c-3.81-3.82-3.8-10,.02-13.81Z"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 626.15 122.12" height="20" fill="#000">
+        <path d="M85.43.3H4.91C2.2.3,0,2.5,0,5.21v112c0,2.71,2.2,4.91,4.91,4.91h11.56c2.71,0,4.91-2.2,4.91-4.91v-39.28c0-2.71,2.2-4.91,4.91-4.91h51.6c2.71,0,4.91-2.2,4.91-4.91v-11.22c0-2.71-2.2-4.91-4.91-4.91H26.3c-2.71,0-4.91-2.2-4.91-4.91v-20.97c0-2.71,2.2-4.91,4.91-4.91h59.13c2.71,0,4.91-2.2,4.91-4.91V5.21c0-2.71-2.2-4.91-4.91-4.91Z"/><rect x="145.21" y=".3" width="21.39" height="121.82" rx="4.91" ry="4.91"/><path d="M310.61,62.12c-2.1-1.7-2.36-4.79-.65-6.88,4.04-4.95,6.62-11.85,6.62-21.02,0-15.91-10.78-34.22-40.04-34.22h-50.18c-2.71,0-4.91,2.2-4.91,4.91v112c0,2.71,2.2,4.91,4.91,4.91h53.09c27.38,0,42.94-14.03,42.94-34.05,0-12.19-5.28-20.36-11.79-25.65ZM242.85,25.62c0-2.71,2.2-4.91,4.91-4.91h30.16c13.17,0,17.28,7.36,17.28,14.54,0,10.44-8.04,15.4-18.65,15.4h-28.79c-2.71,0-4.91-2.2-4.91-4.91v-20.12ZM280.83,101.12h-33.07c-2.71,0-4.91-2.2-4.91-4.91v-20.46c0-2.71,2.2-4.91,4.91-4.91h31.7c16.08,0,21.56,8.21,21.56,15.91,0,8.39-5.82,14.37-20.19,14.37Z"/><path d="M456.16.3h-82.06c-2.71,0-4.91,2.2-4.91,4.91v112c0,2.71,2.2,4.91,4.91,4.91h82.06c2.71,0,4.91-2.2,4.91-4.91v-11.05c0-2.71-2.2-4.91-4.91-4.91h-60.67c-2.71,0-4.91-2.2-4.91-4.91v-19.78c0-2.71,2.2-4.91,4.91-4.91h53.14c2.71,0,4.91-2.2,4.91-4.91v-11.22c0-2.71-2.2-4.91-4.91-4.91h-53.14c-2.71,0-4.91-2.2-4.91-4.91v-19.6c0-2.71,2.2-4.91,4.91-4.91h60.67c2.71,0,4.91-2.2,4.91-4.91V5.21c0-2.71-2.2-4.91-4.91-4.91Z"/><path d="M625.12,114.21l-40.01-51.89c-1.36-1.76-1.36-4.22,0-5.99l36.97-48.13c2.48-3.23.18-7.9-3.9-7.9h-14.63c-1.54,0-2.99.72-3.91,1.94l-26.25,34.63c-1.97,2.6-5.87,2.59-7.84-.01l-26.1-34.61c-.93-1.23-2.38-1.95-3.92-1.95h-14.62c-4.07,0-6.38,4.67-3.9,7.9l36.97,48.13c1.36,1.77,1.35,4.23,0,5.99l-40.01,51.89c-2.49,3.23-.19,7.91,3.89,7.91h14.59c1.54,0,2.99-.72,3.92-1.96l29.18-38.71c1.96-2.6,5.87-2.61,7.84,0l29.33,38.73c.93,1.23,2.38,1.95,3.92,1.95h14.6c4.08,0,6.38-4.68,3.89-7.91Z"/>
+      </svg>
+    </div>
+    <div class="hero-eyebrow">True Speed. True Connection.</div>
+    <div class="hero-h1">Zero lags,<br><span>Stable wins</span></div>
+    <p class="hero-sub">Your journey starts here. Honest, fast fiber internet for every Filipino — no hidden fees, no runaround.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">3,000+</div>
+        <div class="hero-stat-label">Active Subscribers</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">9</div>
+        <div class="hero-stat-label">Universities Served</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">99%</div>
+        <div class="hero-stat-label">Uptime Guaranteed</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-speech">Speed<br>promised.<br>Speed<br>delivered.</div>
+    <div>
+      <div class="hero-price-pill">₱999 / month</div>
+      <div class="hero-price-note"><strong>Unlimited data.</strong><br>Ideal for streaming, gaming & WFH</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: PLANS -->
+<div class="page page-plans">
+  <div class="plans-header">
+    <div class="plans-eyebrow">Residential Plans</div>
+    <div class="plans-h2">Honest plans. Real speeds.</div>
+    <div class="plans-sub">All plans include unlimited data, free installation, and zero lock-in. Prices exclusive of VAT.</div>
+  </div>
+  <div class="plans-grid">
+    <!-- ELITE -->
+    <div class="plan-card" style="background:#fff">
+      <div class="plan-card-label" style="color:#999">Residential</div>
+      <div class="plan-card-name" style="color:#000">FIBEX ELITE</div>
+      <div><span class="plan-speed-num" style="color:#0119FE">200</span><span class="plan-speed-unit" style="color:#666"> Mbps</span></div>
+      <hr class="plan-divider" style="border-color:#000">
+      <div class="plan-feature" style="color:#444">✓ Unlimited data</div>
+      <div class="plan-feature" style="color:#444">✓ Free installation</div>
+      <div class="plan-feature" style="color:#444">✓ 24/7 support</div>
+      <div class="plan-price" style="color:#0119FE">₱999<span style="font-weight:400;font-size:12px">/mo</span></div>
+      <div class="plan-note" style="color:#999">No hidden fees.</div>
+    </div>
+    <!-- RUSH -->
+    <div class="plan-card" style="background:#000">
+      <div class="plan-card-label" style="color:rgba(255,255,255,0.4)">Residential</div>
+      <div class="plan-card-name" style="color:#fff">FIBEX RUSH</div>
+      <div><span class="plan-speed-num">300</span><span class="plan-speed-unit"> Mbps</span></div>
+      <hr class="plan-divider" style="border-color:#fff">
+      <div class="plan-feature" style="color:rgba(255,255,255,0.8)">✓ Unlimited data</div>
+      <div class="plan-feature" style="color:rgba(255,255,255,0.8)">✓ Free installation</div>
+      <div class="plan-feature" style="color:rgba(255,255,255,0.8)">✓ Priority support</div>
+      <div class="plan-price" style="color:#fff">₱1,499<span style="font-weight:400;font-size:12px">/mo</span></div>
+      <div class="plan-note" style="color:rgba(255,255,255,0.4)">No hidden fees.</div>
+    </div>
+    <!-- BLAZE -->
+    <div class="plan-card" style="background:#0119FE">
+      <div class="plan-card-label" style="color:rgba(255,255,255,0.5)">Residential · Most Popular</div>
+      <div class="plan-card-name" style="color:#fff">FIBEX BLAZE</div>
+      <div><span class="plan-speed-num">400</span><span class="plan-speed-unit"> Mbps</span></div>
+      <hr class="plan-divider" style="border-color:#fff">
+      <div class="plan-feature" style="color:rgba(255,255,255,0.85)">✓ Unlimited data</div>
+      <div class="plan-feature" style="color:rgba(255,255,255,0.85)">✓ Free installation</div>
+      <div class="plan-feature" style="color:rgba(255,255,255,0.85)">✓ Priority support</div>
+      <div class="plan-price" style="color:#fff">₱1,999<span style="font-weight:400;font-size:12px">/mo</span></div>
+      <div class="plan-note" style="color:rgba(255,255,255,0.5)">No hidden fees.</div>
+    </div>
+    <!-- TURBO -->
+    <div class="plan-card" style="background:#fff">
+      <div class="plan-card-label" style="color:#999">Residential</div>
+      <div class="plan-card-name" style="color:#000">FIBEX TURBO</div>
+      <div><span class="plan-speed-num" style="color:#0119FE">500</span><span class="plan-speed-unit" style="color:#666"> Mbps</span></div>
+      <hr class="plan-divider" style="border-color:#000">
+      <div class="plan-feature" style="color:#444">✓ Unlimited data</div>
+      <div class="plan-feature" style="color:#444">✓ Free installation</div>
+      <div class="plan-feature" style="color:#444">✓ VIP support</div>
+      <div class="plan-price" style="color:#0119FE">₱2,499<span style="font-weight:400;font-size:12px">/mo</span></div>
+      <div class="plan-note" style="color:#999">No hidden fees.</div>
+    </div>
+    <!-- PREMIUM TURBO -->
+    <div class="plan-card" style="background:#000">
+      <div class="plan-card-label" style="color:rgba(255,255,255,0.4)">Residential</div>
+      <div class="plan-card-name" style="color:#fff">FIBEX PREMIUM TURBO</div>
+      <div><span class="plan-speed-num">1,000</span><span class="plan-speed-unit"> Mbps</span></div>
+      <hr class="plan-divider" style="border-color:#fff">
+      <div class="plan-feature" style="color:rgba(255,255,255,0.8)">✓ Unlimited data</div>
+      <div class="plan-feature" style="color:rgba(255,255,255,0.8)">✓ Dedicated manager</div>
+      <div class="plan-feature" style="color:rgba(255,255,255,0.8)">✓ SLA guarantee</div>
+      <div class="plan-price" style="color:#fff">₱7,999<span style="font-weight:400;font-size:12px">/mo</span></div>
+      <div class="plan-note" style="color:rgba(255,255,255,0.4)">No hidden fees.</div>
+    </div>
+  </div>
+  <div class="plan-disclaimer">Fast installation · Reliable fiber connection · Low latency for gaming & work from home · sales@fibexph.com · www.fibexph.com</div>
+</div>
+
+<!-- PAGE 3: ABOUT -->
+<div class="page page-about">
+  <div class="about-left">
+    <div class="about-eyebrow">About Fibex</div>
+    <div class="about-h1">Fast internet<br>for every<br><span>Filipino.</span></div>
+    <p class="about-body">Fibex Broadband Inc. began with a simple belief: every Filipino deserves internet that's honest, reliable, and truly felt. No fine print. No exaggerated claims. Just clear plans, fair pricing, and customer care that actually shows up.</p>
+    <p class="about-body">Established in 2021 · Registered in Pampanga, Philippines</p>
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="about-stat-num">3,000+</div>
+        <div class="about-stat-label">Active Subscribers</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">9</div>
+        <div class="about-stat-label">Universities Served</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">99%</div>
+        <div class="about-stat-label">Uptime Commitment</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">2021</div>
+        <div class="about-stat-label">Est. in Pampanga</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-value">
+      <div class="about-value-title">Honesty</div>
+      <div class="about-value-desc">No hidden charges. ₱999 means ₱999. Our prices never lie.</div>
+    </div>
+    <div class="about-value">
+      <div class="about-value-title">Service</div>
+      <div class="about-value-desc">Technicians 7 days a week. 24/7 monitoring. We actually show up.</div>
+    </div>
+    <div class="about-value">
+      <div class="about-value-title">Community</div>
+      <div class="about-value-desc">Fiber that reaches barangays, condos, schools, and sari-sari stores.</div>
+    </div>
+    <div class="about-value">
+      <div class="about-value-title">Fairness</div>
+      <div class="about-value-desc">What you pay for, you actually get. No asterisks, no fine print.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4: CONTACT -->
+<div class="page page-contact">
+  <div class="contact-left">
+    <div class="contact-eyebrow">Contact Fibex</div>
+    <div class="contact-h1">We're here.<br>Let's connect.</div>
+    <p class="contact-sub">The world of tech can be fast-paced and scary. That's why our goal is to provide an experience tailored to your needs. We guarantee you will be satisfied with our work.</p>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value">sales@fibexph.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div class="contact-item-label">Mobile</div>
+          <div class="contact-item-value">0967-348-2428</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div class="contact-item-label">Landline</div>
+          <div class="contact-item-value">(044) 305-8173</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div class="contact-item-label">Main Office</div>
+          <div class="contact-item-value">Panipuan, San Fernando, Pampanga</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div class="contact-item-label">Website</div>
+          <div class="contact-item-value">www.fibexph.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="contact-card-eyebrow">Office Hours</div>
+    <div class="contact-card-h2">Visit us during business hours.</div>
+    <div class="hours-row"><span class="hours-day">Monday – Friday</span><span>9:00 AM – 5:00 PM</span></div>
+    <div class="hours-row"><span class="hours-day">Saturday</span><span>Closed</span></div>
+    <div class="hours-row"><span class="hours-day">Sunday</span><span>Closed</span></div>
+    <div class="tagline-bar">
+      <div class="tagline-text">True Speed. True Connection.</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:11px;color:rgba(255,255,255,0.7);margin-top:4px">WiFi for All · Pampanga, Philippines</div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.fonts.ready.then(function() {
+  setTimeout(function() { window.print(); }, 500);
+});
+</script>
+</body>
+</html>

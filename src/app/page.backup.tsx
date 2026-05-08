@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Shield, Zap, Globe, Users, TrendingUp, Star, ChevronDown, Quote, Mail, Phone, MapPin, Wifi, Gamepad2, Monitor, Download, Upload, Menu, X } from "lucide-react";
+import { ArrowRight, CheckCircle, Shield, Zap, Globe, Users, TrendingUp, Star, ChevronDown, Quote, Mail, Phone, MapPin, Wifi, Gamepad2, Download, Upload, Menu, X } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 

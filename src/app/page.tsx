@@ -1,302 +1,999 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Building2,
+  CheckCircle,
+  Globe2,
+  Headphones,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  ShieldCheck,
+  Star,
+  Users,
+  X,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { type FormEvent, type ReactNode, useState } from "react";
 
-function FiberLine({ delay, duration, top, angle }: { delay: number; duration: number; top: string; angle: number }) {
+const navItems = [
+  { label: "Home" },
+  { label: "Plans" },
+  { label: "About" },
+  { label: "Contact" },
+];
+
+const stats = [
+  { value: "4,000+", label: "Subscribers" },
+  { value: "9", label: "Universities Served" },
+  { value: "99%", label: "Uptime Guaranteed" },
+];
+
+const whyItems = [
+  {
+    title: "Honest Pricing",
+    desc: "No hidden charges. No exaggerated claims. What you see is what you pay.",
+    image: "/assets/home-honest-pricing.png",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Real Support",
+    desc: "Real people answering. Fast fixes. Technicians 7 days a week.",
+    image: "/assets/home-real-support.png",
+    icon: Headphones,
+  },
+  {
+    title: "Community Fiber",
+    desc: "Fiber that reaches barangays, condos, schools, and local businesses.",
+    image: "/assets/home-community-fiber.png",
+    icon: Users,
+  },
+  {
+    title: "Zero Fine Print",
+    desc: "No asterisks, no lock-in surprises, no runaround. Just reliable internet.",
+    image: "/assets/home-zero-fine-print.png",
+    icon: CheckCircle,
+  },
+];
+
+const residentialPlans = [
+  {
+    name: "FIBEX ELITE",
+    price: "999",
+    speed: "200",
+    unit: "Mbps",
+    desc: "Perfect for everyday browsing, streaming, and social media.",
+    features: ["Unlimited data", "Free installation", "24/7 support", "Low latency"],
+  },
+  {
+    name: "FIBEX RUSH",
+    price: "1,499",
+    speed: "300",
+    unit: "Mbps",
+    desc: "Faster speeds for remote work, multitasking, and HD video calls.",
+    features: ["Unlimited data", "Priority support", "Stable video calls", "Low latency"],
+  },
+  {
+    name: "FIBEX BLAZE",
+    price: "1,999",
+    speed: "400",
+    unit: "Mbps",
+    desc: "Blazing fast for gaming households and busy families.",
+    features: ["Unlimited data", "Priority support", "Gaming-ready", "Free installation"],
+    featured: true,
+  },
+  {
+    name: "FIBEX TURBO",
+    price: "2,499",
+    speed: "500",
+    unit: "Mbps",
+    desc: "Maximum speed for serious streamers, heavy downloaders, and SMEs.",
+    features: ["Unlimited data", "VIP support", "Ultra-low latency", "Free installation"],
+  },
+  {
+    name: "FIBEX PREMIUM TURBO",
+    price: "7,999",
+    speed: "1,000",
+    unit: "Mbps",
+    desc: "Enterprise-grade gigabit fiber for power households.",
+    features: ["Unlimited data", "Account manager", "SLA option", "Gigabit performance"],
+  },
+];
+
+const businessPlans = [
+  {
+    name: "BUSINESS STARTER",
+    price: "2,499",
+    speed: "100",
+    unit: "Mbps",
+    desc: "Reliable fiber for small offices, cafes, and local businesses.",
+    features: ["Business support", "Static IP available", "Unlimited data", "Free installation"],
+  },
+  {
+    name: "BUSINESS PLUS",
+    price: "2,700",
+    speed: "150",
+    unit: "Mbps",
+    desc: "More bandwidth for growing teams and multi-device workspaces.",
+    features: ["Priority support", "Static IP available", "Unlimited data", "Free installation"],
+  },
+  {
+    name: "BUSINESS PRO",
+    price: "3,299",
+    speed: "200",
+    unit: "Mbps",
+    desc: "High-performance fiber for clinics, offices, and growing teams.",
+    features: ["Dedicated support", "Static IP", "Unlimited data", "Low latency"],
+    featured: true,
+  },
+  {
+    name: "BUSINESS TURBO",
+    price: "4,999",
+    speed: "300",
+    unit: "Mbps",
+    desc: "Enterprise bandwidth for demanding operations and large teams.",
+    features: ["SLA option", "Static IP", "Priority support", "Unlimited data"],
+  },
+  {
+    name: "BUSINESS MAX",
+    price: "9,999",
+    speed: "500",
+    unit: "Mbps",
+    desc: "Maximum throughput for large offices and high-volume usage.",
+    features: ["Account manager", "SLA + Static IP", "Business support", "Unlimited data"],
+  },
+];
+
+const testimonials = [
+  {
+    name: "Maria Santos",
+    location: "San Fernando, Pampanga",
+    plan: "FIBEX BLAZE",
+    avatar: "/stuffs/reference/assets/avatar-maria.svg",
+    text: "Finally, an ISP that actually delivers what they promise! I signed up for the BLAZE plan and my connection has been rock-solid since day one. No more buffering during our family video calls.",
+  },
+  {
+    name: "Jomar Reyes",
+    location: "Macabebe, Pampanga",
+    plan: "FIBEX RUSH",
+    avatar: "/stuffs/reference/assets/avatar-jomar.svg",
+    text: "Nagtatrabaho ako sa bahay at dati palagi akong nag-a-apologize sa mga clients dahil sa connection. Since lumipat sa FibeX, wala na. Consistent speed, laging stable.",
+  },
+  {
+    name: "Cafe de Pampa",
+    location: "Apalit, Pampanga",
+    plan: "BUSINESS PRO",
+    avatar: "/stuffs/reference/assets/avatar-cafe.svg",
+    text: "We run a cafe and needed stable WiFi for both our POS system and customers. FibeX Business Pro has been flawless. Installation was fast, support is responsive. Highly recommend!",
+  },
+  {
+    name: "Angelo Cruz",
+    location: "Bitas, Pampanga",
+    plan: "FIBEX TURBO",
+    avatar: "/stuffs/reference/assets/avatar-angelo.svg",
+    text: "Hindi ko inexpect na ganito ka-consistent ang connection. Gaming, streaming, work — kaya ng kaya. Worth every peso. No hidden charges, exactly as advertised.",
+  },
+  {
+    name: "Dr. Liza Mendoza",
+    location: "San Fernando, Pampanga",
+    plan: "BUSINESS PLUS",
+    avatar: "/stuffs/reference/assets/avatar-liza.svg",
+    text: "Our clinic's telemedicine setup needed a reliable connection. FibeX delivered. The team was professional and the setup was clean. We've had zero downtime in months.",
+  },
+  {
+    name: "Ryan Buenaventura",
+    location: "Masantol, Pampanga",
+    plan: "FIBEX ELITE",
+    avatar: "/stuffs/reference/assets/avatar-ryan.svg",
+    text: "Matagal na kaming walang maaasahang internet dito sa amin. FibeX ang unang nagbigay ng tunay na fiber sa area namin. Grabe ang improvement sa aming pang-araw-araw.",
+  },
+];
+
+const contacts = [
+  { label: "Email", value: "sales@fibexph.com", note: "For plan inquiries & applications", icon: Mail },
+  { label: "Mobile", value: "0967-348-2428", note: "Call or text anytime", icon: Phone },
+  { label: "Landline", value: "(044) 305-8173", note: "Office line, Monday to Friday", icon: Phone },
+  { label: "Main Office", value: "Panipuan, San Fernando, Pampanga", note: "Head office location", icon: MapPin },
+  { label: "Branch Office", value: "Batasan, Macabebe, Pampanga", note: "Serving Macabebe & Masantol", icon: Building2 },
+  { label: "Website", value: "www.fibexph.com", note: "Visit us online", icon: Globe2 },
+];
+
+type Plan = (typeof residentialPlans)[number];
+type PageName = "Home" | "Plans" | "XureCheck" | "About" | "Contact";
+
+function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   return (
     <motion.div
-      className="absolute left-0 w-full h-px origin-left pointer-events-none"
-      style={{ top, transform: `rotate(${angle}deg)` }}
+      className={className}
+      initial={{ opacity: 0, y: 34 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.65, delay, ease: "easeOut" }}
     >
-      <motion.div
-        className="h-full w-24 rounded-full"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(0, 82, 204, 0.6), rgba(241, 36, 0, 0.4), transparent)",
-        }}
-        initial={{ x: "-10%" }}
-        animate={{ x: "calc(100vw + 10%)" }}
-        transition={{
-          duration,
-          delay,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
+      {children}
     </motion.div>
   );
 }
 
-function GridNode({ x, y, delay }: { x: string; y: string; delay: number }) {
+function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
   return (
-    <motion.div
-      className="absolute w-1.5 h-1.5 rounded-full bg-[#0052CC]"
-      style={{ left: x, top: y }}
-      animate={{
-        opacity: [0.1, 0.6, 0.1],
-        scale: [0.8, 1.3, 0.8],
-        boxShadow: [
-          "0 0 4px rgba(0, 82, 204, 0.2)",
-          "0 0 12px rgba(0, 82, 204, 0.6)",
-          "0 0 4px rgba(0, 82, 204, 0.2)",
-        ],
-      }}
-      transition={{
-        duration: 3,
-        delay,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    />
+    <div className={`mb-3 text-[10px] font-bold uppercase tracking-[0.35em] ${light ? "text-white/45" : "text-[#0119FE]"}`}>
+      {children}
+    </div>
   );
 }
 
-const nodePositions = [
-  { x: "10%", y: "15%", delay: 0 },
-  { x: "25%", y: "70%", delay: 0.8 },
-  { x: "40%", y: "30%", delay: 1.6 },
-  { x: "55%", y: "80%", delay: 0.4 },
-  { x: "70%", y: "20%", delay: 1.2 },
-  { x: "85%", y: "60%", delay: 2.0 },
-  { x: "15%", y: "45%", delay: 2.4 },
-  { x: "60%", y: "50%", delay: 0.6 },
-  { x: "90%", y: "35%", delay: 1.8 },
-  { x: "35%", y: "85%", delay: 1.0 },
-  { x: "78%", y: "75%", delay: 1.4 },
-  { x: "48%", y: "12%", delay: 2.2 },
-  { x: "5%", y: "90%", delay: 0.2 },
-  { x: "92%", y: "10%", delay: 2.6 },
-];
-
-const fiberLines = [
-  { delay: 0, duration: 4.5, top: "18%", angle: 2 },
-  { delay: 1.5, duration: 5.2, top: "35%", angle: -1.5 },
-  { delay: 3.0, duration: 4.0, top: "52%", angle: 1 },
-  { delay: 0.8, duration: 5.8, top: "68%", angle: -2 },
-  { delay: 2.2, duration: 4.8, top: "82%", angle: 0.5 },
-  { delay: 4.0, duration: 5.0, top: "25%", angle: -0.8 },
-  { delay: 1.0, duration: 6.0, top: "45%", angle: 1.5 },
-  { delay: 3.5, duration: 4.2, top: "90%", angle: -1 },
-];
-
-const letterVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 1.2 + i * 0.04,
-      duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
-    },
-  }),
-};
-
-export default function Home() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const headingText = "UNDER CONSTRUCTION";
-  const subText = "We're building something incredible.";
-
-  if (!mounted) return null;
+function Header({ page, onNav }: { page: PageName; onNav: (page: PageName) => void }) {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-[#04080F] flex items-center justify-center">
-      {/* Subtle radial gradient overlay */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0, 82, 204, 0.08) 0%, transparent 70%)",
-        }}
-      />
+    <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="fixed left-0 right-0 top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur-xl"
+    >
+      <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
+        <button className="flex items-center gap-3" onClick={() => onNav("Home")} aria-label="Go to home">
+          <Image src="/logos/blue_logo.png" alt="FibeX" width={132} height={48} className="h-8 w-auto" priority />
+        </button>
 
-      {/* Animated grid pattern */}
-      <div className="absolute inset-0 z-0 opacity-[0.04]">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0, 82, 204, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 82, 204, 0.5) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
+        <nav className="hidden items-center gap-9 md:flex">
+          {navItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={(event) => {
+                event.preventDefault();
+                onNav(item.label as PageName);
+              }}
+              className={`text-xs font-semibold uppercase tracking-[0.18em] transition hover:text-[#0119FE] ${
+                page === item.label ? "text-[#0119FE]" : "text-black/55"
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
 
-      {/* Fiber optic light streaks */}
-      <div className="absolute inset-0 z-[1] overflow-hidden">
-        {fiberLines.map((line, i) => (
-          <FiberLine key={i} {...line} />
-        ))}
-      </div>
-
-      {/* Pulsing network nodes */}
-      <div className="absolute inset-0 z-[1]">
-        {nodePositions.map((node, i) => (
-          <GridNode key={i} {...node} />
-        ))}
-      </div>
-
-      {/* Corner accent — top left */}
-      <motion.div
-        className="absolute top-0 left-0 w-32 h-32 z-[2]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.5 }}
-      >
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-[#0052CC] to-transparent" />
-        <div className="absolute top-0 left-0 h-full w-px bg-gradient-to-b from-[#0052CC] to-transparent" />
-      </motion.div>
-
-      {/* Corner accent — bottom right */}
-      <motion.div
-        className="absolute bottom-0 right-0 w-32 h-32 z-[2]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.7 }}
-      >
-        <div className="absolute bottom-0 right-0 w-full h-px bg-gradient-to-l from-[#F12400] to-transparent" />
-        <div className="absolute bottom-0 right-0 h-full w-px bg-gradient-to-t from-[#F12400] to-transparent" />
-      </motion.div>
-
-      {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto">
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-10"
-        >
-          <motion.div
-            animate={{
-              filter: [
-                "drop-shadow(0 0 8px rgba(0, 82, 204, 0.3))",
-                "drop-shadow(0 0 20px rgba(0, 82, 204, 0.6))",
-                "drop-shadow(0 0 8px rgba(0, 82, 204, 0.3))",
-              ],
-            }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        <div className="hidden md:block">
+          <motion.button
+            onClick={() => onNav("Contact")}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white shadow-[0_16px_40px_rgba(1,25,254,0.22)] transition hover:bg-[#0014d7]"
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <Image
-              src="/logos/blue_logo.png"
-              alt="FibeX Logo"
-              width={200}
-              height={200}
-              priority
-              className="w-auto h-20 sm:h-28 md:h-36 lg:h-40"
-            />
-          </motion.div>
-        </motion.div>
-
-        {/* Horizontal rule */}
-        <motion.div
-          className="w-full max-w-xs h-px mb-10"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          style={{
-            background: "linear-gradient(90deg, transparent, #0052CC, #F12400, transparent)",
-          }}
-        />
-
-        {/* Main heading — letter-by-letter */}
-        <div className="mb-4 overflow-hidden">
-          <h1
-            className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-[0.08em] sm:tracking-[0.15em] text-white"
-            style={{ fontFamily: "Origin Heavy" }}
-          >
-            {headingText.split("").map((char, i) => (
-              <motion.span
-                key={i}
-                custom={i}
-                variants={letterVariants}
-                initial="hidden"
-                animate="visible"
-                className="inline-block text-white"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </h1>
+            Apply Now
+            <ArrowRight className="h-4 w-4" />
+          </motion.button>
         </div>
 
-        {/* Subtitle */}
-        <motion.p
-          className="text-base sm:text-lg md:text-xl text-gray-400 mb-12 font-medium tracking-wide"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.0 }}
-        >
-          {subText}
-        </motion.p>
+        <button className="rounded-full border border-black/10 p-2 md:hidden" onClick={() => setMenuOpen((open) => !open)} aria-label="Toggle menu">
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
 
-        {/* Animated progress bar */}
+      {menuOpen && (
+        <motion.nav initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="border-t border-black/5 bg-white px-5 py-5 md:hidden">
+          <div className="flex flex-col gap-4">
+            {navItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={(event) => {
+                  event.preventDefault();
+                  setMenuOpen(false);
+                  onNav(item.label as PageName);
+                }}
+                className={`text-left text-sm font-semibold uppercase tracking-[0.18em] ${
+                  page === item.label ? "text-[#0119FE]" : "text-black/65"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                onNav("Contact");
+              }}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white"
+            >
+              Apply Now
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        </motion.nav>
+      )}
+    </motion.header>
+  );
+}
+
+function Hero({ onNav }: { onNav: (page: PageName) => void }) {
+  return (
+    <section id="home" className="relative min-h-screen overflow-hidden bg-[#ffffff] pt-[68px]">
+      <div className="relative z-10 mx-auto min-h-[calc(100vh-68px)] w-full px-5 py-10 pb-28 sm:px-8 lg:min-h-[calc(100vh-68px)] lg:px-12 lg:py-0 lg:pb-0">
         <motion.div
-          className="w-full max-w-sm mb-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.4, duration: 0.6 }}
+          initial={{ opacity: 0, y: -32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="relative z-30 lg:absolute lg:left-[34rem] lg:top-[4.5rem]"
         >
-          <div className="relative w-full h-1 rounded-full bg-white/5 overflow-hidden">
-            <motion.div
-              className="absolute top-0 left-0 h-full rounded-full"
-              style={{
-                background: "linear-gradient(90deg, #0052CC, #F12400)",
+          <h1 className="max-w-[560px] font-black leading-[0.9] tracking-[-0.065em] text-black" style={{ fontFamily: "Origin Heavy" }}>
+            <span className="block text-[clamp(3.2rem,6.5vw,5.6rem)]">Zero lags,</span>
+            <span className="block text-[clamp(3.2rem,6.5vw,5.6rem)] text-[#0119FE]">Stable wins</span>
+          </h1>
+          <p className="mt-5 max-w-md text-base font-semibold leading-8 text-black/65">Your journey starts here</p>
+          <div className="mt-8 flex flex-col sm:flex-row">
+            <motion.button
+              onClick={() => onNav("Plans")}
+              className="mb-3 inline-flex items-center justify-center rounded-full bg-[#0119FE] px-9 py-5 text-base font-semibold text-white shadow-[0_16px_40px_rgba(1,25,254,0.22)] transition hover:bg-[#0014d7] sm:mb-0 sm:mr-3"
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              See Plans
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </motion.button>
+            <motion.a
+              href="#xurecheck"
+              onClick={(event) => {
+                event.preventDefault();
+                onNav("Plans");
               }}
-              animate={{
-                width: ["0%", "65%", "45%", "80%", "60%", "0%"],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            <motion.div
-              className="absolute top-0 h-full w-8 rounded-full"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)",
-              }}
-              animate={{ left: ["-10%", "110%"] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "linear",
-                delay: 2.6,
-              }}
-            />
+              className="inline-flex items-center justify-center rounded-full border-2 border-black px-9 py-5 text-base font-semibold text-black transition hover:bg-black hover:text-white"
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Try XureCheck
+            </motion.a>
           </div>
         </motion.div>
 
-        {/* Tagline */}
-        <motion.p
-          className="text-xs sm:text-sm text-gray-600 tracking-widest uppercase"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.8, duration: 0.6 }}
+        <motion.div
+          className="relative z-20 mx-auto mt-12 flex min-h-[700px] w-full max-w-[1700px] items-end justify-center overflow-hidden rounded-t-[44px] px-4 pt-10 sm:px-6 sm:pt-14 lg:absolute lg:bottom-0 lg:left-[52%] lg:mt-0 lg:h-full lg:min-h-0 lg:-translate-x-1/2 lg:px-8 lg:pt-0"
+          initial={{ opacity: 0, y: 46 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.18 }}
         >
-          True Speed, True Connection
-        </motion.p>
+          <motion.div className="relative z-10 flex w-full justify-center lg:translate-y-[4.5rem]" animate={{ y: [0, -8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
+            <Image src="/assets/home-hero.png" alt="FibeX customers" width={1650} height={1820} priority className="h-[700px] w-auto max-w-none object-contain sm:h-[780px] lg:h-[1020px]" />
+          </motion.div>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, x: 42 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="relative z-30 mx-auto mt-8 flex max-w-[700px] flex-col items-start lg:absolute lg:right-[30rem] lg:top-[32%] lg:mt-0 lg:items-end">
+          <div className="rounded-[1.8rem] bg-[#0119FE] p-8 text-left shadow-[0_24px_80px_rgba(1,25,254,0.25)] lg:text-right">
+            <p className="font-black leading-[1.03] tracking-[-0.03em] text-white" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.4rem,3.9vw,3.4rem)" }}>
+              Speed<br />promised.<br />Speed<br />delivered.
+            </p>
+          </div>
+          <div className="mt-4 flex flex-col items-start lg:items-end">
+            <div className="rounded-full bg-[#F12400] px-10 py-4 text-lg font-black text-white" style={{ fontFamily: "Origin Heavy" }}>as low as ₱999 / month</div>
+            <p className="mt-2 max-w-sm text-sm leading-7 text-black/55 lg:text-right"><strong>Unlimited data.</strong><br />Ideal for everyday streaming, gaming & WFH.</p>
+          </div>
+        </motion.div>
+      </div>
+      <div className="relative z-30 bg-black px-5 py-5 text-white lg:absolute lg:bottom-0 lg:left-0 lg:right-0">
+        <div className="mx-auto grid w-full grid-cols-1 gap-5 text-center sm:grid-cols-3">
+          {stats.map((stat, index) => (
+            <motion.div key={stat.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 + index * 0.12 }} className="border-white/10 sm:border-l first:sm:border-l-0">
+              <div className="text-2xl font-black" style={{ fontFamily: "Origin Heavy" }}>{stat.value}</div>
+              <div className="mt-1 text-[10px] font-bold uppercase tracking-[0.32em] text-white/55">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyFibex() {
+  return (
+    <section className="bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      <Reveal className="mx-auto max-w-3xl text-center">
+        <Eyebrow>Why FibeX</Eyebrow>
+        <h2 className="font-black leading-[1.02] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.4rem,5vw,4rem)" }}>Built different.</h2>
+      </Reveal>
+      <div className="mx-auto mt-14 grid max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {whyItems.map((item, index) => (
+          <Reveal key={item.title} delay={index * 0.08}>
+            <motion.article className="group h-full overflow-hidden rounded-[1.7rem] border border-black/5 bg-[#f6f6f6] shadow-sm" whileHover={{ y: -8 }} transition={{ duration: 0.2 }}>
+              <div className="relative h-48 overflow-hidden bg-[#0119FE]">
+                <Image src={item.image} alt={item.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
+                <div className="absolute bottom-4 left-4 rounded-full bg-white p-3 text-[#0119FE]"><item.icon className="h-5 w-5" /></div>
+              </div>
+              <div className="border-t-2 border-black p-6">
+                <h3 className="mb-3 text-xl font-black text-black" style={{ fontFamily: "Origin Heavy" }}>{item.title}</h3>
+                <p className="text-sm leading-7 text-black/60">{item.desc}</p>
+              </div>
+            </motion.article>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function PlanCard({ plan, index, onApply }: { plan: Plan; index: number; onApply: () => void }) {
+  const dark = plan.featured || index % 2 === 1;
+  return (
+    <motion.article
+      layout
+      className={`relative flex h-full flex-col overflow-hidden rounded-[1.6rem] p-7 shadow-lg ${dark ? "bg-[#0119FE] text-white shadow-blue-900/20" : "bg-white text-black shadow-black/5"}`}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      whileHover={{ y: -8, scale: 1.015 }}
+    >
+      {plan.featured && <div className="absolute right-5 top-5 rounded-full bg-[#F12400] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white">Popular</div>}
+      <p className={`mb-3 text-[10px] font-bold uppercase tracking-[0.35em] ${dark ? "text-white/45" : "text-black/45"}`}>FibeX</p>
+      <h3 className="min-h-12 pr-16 text-xl font-black leading-tight" style={{ fontFamily: "Origin Heavy" }}>{plan.name}</h3>
+      <div className="mt-6 flex items-end gap-2">
+        <span className="text-[4rem] font-black leading-none" style={{ fontFamily: "Origin Heavy" }}>{plan.speed}</span>
+        <span className={`mb-3 text-sm font-semibold ${dark ? "text-white/65" : "text-black/45"}`}>{plan.unit}</span>
+      </div>
+      <div className="mt-2 text-lg font-semibold">₱{plan.price}<span className="text-sm font-normal opacity-70">/month</span></div>
+      <p className={`mt-5 min-h-20 text-sm leading-7 ${dark ? "text-white/68" : "text-black/58"}`}>{plan.desc}</p>
+      <div className={`my-5 h-px ${dark ? "bg-white/15" : "bg-black/10"}`} />
+      <ul className="flex flex-1 flex-col gap-3">
+        {plan.features.map((feature) => (
+          <li key={feature} className="flex items-center gap-3 text-sm">
+            <CheckCircle className={`h-5 w-5 ${dark ? "text-white" : "text-[#0119FE]"}`} />
+            {feature}
+          </li>
+        ))}
+      </ul>
+      <button onClick={onApply} className={`mt-8 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${dark ? "bg-white text-[#0119FE] hover:bg-white/90" : "bg-[#0119FE] text-white hover:bg-[#0014d7]"}`}>Apply Now</button>
+    </motion.article>
+  );
+}
+
+function HomePlansPreview({ onNav }: { onNav: (page: PageName) => void }) {
+  const [category, setCategory] = useState<"residential" | "business" | "dia">("residential");
+  const plans = category === "residential" ? residentialPlans : businessPlans;
+  const copy = {
+    residential: {
+      eyebrow: "Residential Plans",
+      title: "Honest plans. Real speeds.",
+      sub: "From ₱999/mo · Unlimited data · Free installation · No lock-in",
+    },
+    business: {
+      eyebrow: "Business Plans",
+      title: "Built for business.",
+      sub: "From ₱2,499/mo · Static IP available · Priority support",
+    },
+  };
+
+  return (
+    <section className="bg-[#f5f5f5] px-5 py-20 sm:px-8 lg:px-12">
+      <div className="mx-auto flex max-w-fit rounded-full bg-black/10 p-1">
+        {[
+          { id: "residential", label: "Residential" },
+          { id: "business", label: "Business" },
+          { id: "dia", label: "Direct Internet Access" },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setCategory(tab.id as "residential" | "business" | "dia")}
+            className={`rounded-full px-4 py-2 text-xs font-semibold transition sm:px-6 ${
+              category === tab.id ? "bg-[#0119FE] text-white shadow-lg shadow-blue-900/20" : "text-black/55 hover:text-black"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
-      {/* Bottom bar */}
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 z-10 flex items-center justify-center py-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 3.2, duration: 0.6 }}
-      >
-        <p className="text-gray-600 text-xs tracking-wider">
-          &copy; {new Date().getFullYear()} FibeX Turbo Inc. All rights reserved.
-        </p>
-      </motion.div>
+      {category === "dia" ? (
+        <Reveal className="mx-auto mt-12 grid max-w-6xl overflow-hidden rounded-[2rem] bg-black text-white lg:grid-cols-2">
+          <div className="relative min-h-[320px]">
+            <Image src="/assets/plans-dia.png" alt="Dedicated Internet Access" fill className="object-cover opacity-80" />
+          </div>
+          <div className="p-8 sm:p-12">
+            <div className="mb-5 inline-flex rounded-full bg-[#F12400] px-5 py-2 text-xs font-black uppercase tracking-[0.18em]" style={{ fontFamily: "Origin Heavy" }}>DIA Line</div>
+            <h3 className="text-4xl font-black leading-tight" style={{ fontFamily: "Origin Heavy" }}>Dedicated Fiber.<br />Just for you.</h3>
+            <p className="mt-6 text-sm leading-8 text-white/62">Designed for large establishments that require secure, always-on internet through a dedicated, uncontended fiber connection.</p>
+            <button onClick={() => onNav("Plans")} className="mt-8 rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white">Learn More & Request a Quote</button>
+          </div>
+        </Reveal>
+      ) : (
+        <>
+          <Reveal className="mx-auto mt-12 max-w-3xl text-center">
+            <Eyebrow>{copy[category].eyebrow}</Eyebrow>
+            <h2 className="font-black leading-[1.03] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.15rem,4vw,3.4rem)" }}>{copy[category].title}</h2>
+            <p className="mt-3 text-sm text-black/60">{copy[category].sub}</p>
+          </Reveal>
+          <div className="mx-auto mt-10 grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {plans.map((plan, index) => {
+              const dark = index % 2 === 1 || plan.featured;
+              return (
+                <motion.button
+                  key={plan.name}
+                  onClick={() => onNav("Plans")}
+                  className={`rounded-[1.3rem] p-6 text-left shadow-lg transition ${dark ? "bg-[#0119FE] text-white shadow-blue-900/15" : "bg-white text-black shadow-black/5"}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.05 }}
+                  whileHover={{ y: -6 }}
+                >
+                  <div className={`mb-2 text-[9px] font-bold uppercase tracking-[0.32em] ${dark ? "text-white/45" : "text-black/45"}`}>FibeX</div>
+                  <div className="mb-4 text-sm font-black leading-tight" style={{ fontFamily: "Origin Heavy" }}>{plan.name.replace("FIBEX ", "").replace("BUSINESS ", "")}</div>
+                  <div className={`text-5xl font-black leading-none ${dark ? "text-white" : "text-[#0119FE]"}`} style={{ fontFamily: "Origin Heavy" }}>{plan.speed}</div>
+                  <div className={`mt-1 text-xs ${dark ? "text-white/55" : "text-black/45"}`}>{plan.unit}</div>
+                  <div className="mt-5 text-sm font-semibold">₱{plan.price}<span className="text-xs font-normal opacity-70">/mo</span></div>
+                </motion.button>
+              );
+            })}
+          </div>
+          <div className="mt-10 text-center">
+            <button onClick={() => onNav("Plans")} className="rounded-full bg-[#0119FE] px-8 py-4 text-sm font-semibold text-white">See All Plans</button>
+          </div>
+        </>
+      )}
+    </section>
+  );
+}
+
+function PlansSection({ onApply }: { onApply: () => void }) {
+  return (
+    <section id="plans" className="scroll-mt-20 bg-white">
+      <div className="bg-[#0119FE] px-5 py-20 text-center text-white sm:px-8 lg:px-12">
+        <Reveal className="mx-auto max-w-3xl">
+          <Eyebrow light>FibeX Plans</Eyebrow>
+          <h1 className="font-black leading-[1.03] tracking-[-0.03em]" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.5rem,5vw,4.25rem)" }}>Pick your speed.</h1>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-white/70">All plans include unlimited data, free installation, and zero lock-in contracts. Prices exclusive of VAT.</p>
+          <div className="mt-5 inline-flex rounded-full bg-[#F12400] px-6 py-2 text-xs font-black uppercase tracking-[0.12em]" style={{ fontFamily: "Origin Heavy" }}>No fine print. Just fast internet.</div>
+        </Reveal>
+      </div>
+
+      <div className="sticky top-[68px] z-30 flex justify-center bg-black">
+        {[
+          { href: "#section-residential", label: "Residential" },
+          { href: "#section-business", label: "Business" },
+          { href: "#section-dia", label: "Direct Internet Access" },
+        ].map((item) => (
+          <a key={item.href} href={item.href} className="border-b-2 border-transparent px-4 py-4 text-center text-[11px] font-semibold tracking-[0.08em] text-white/45 transition hover:border-[#0119FE] hover:text-white sm:px-8 sm:text-sm">
+            {item.label}
+          </a>
+        ))}
+      </div>
+
+      <div id="section-residential" className="scroll-mt-32 bg-[#f5f5f5] px-5 py-20 sm:px-8 lg:px-12">
+        <Reveal className="mx-auto max-w-7xl">
+          <Eyebrow>Residential Plans</Eyebrow>
+          <h2 className="font-black leading-[1.04] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2rem,4vw,3rem)" }}>Honest plans. Real speeds.</h2>
+          <p className="mt-3 text-sm text-black/60">Fast fiber installation · Reliable connection · Low latency for gaming & WFH</p>
+        </Reveal>
+        <div className="mx-auto mt-12 grid max-w-7xl gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {residentialPlans.slice(0, 3).map((plan, index) => <PlanCard key={plan.name} plan={plan} index={index} onApply={onApply} />)}
+        </div>
+        <div className="mx-auto mt-5 grid max-w-4xl gap-5 md:grid-cols-2">
+          {residentialPlans.slice(3).map((plan, index) => <PlanCard key={plan.name} plan={plan} index={index + 3} onApply={onApply} />)}
+        </div>
+        <p className="mt-10 text-center text-sm leading-7 text-black/50">Prices exclusive of VAT · Free installation · Low latency · <strong>Apply: sales@fibexph.com</strong></p>
+      </div>
+
+      <div id="section-business" className="scroll-mt-32 bg-white px-5 py-20 sm:px-8 lg:px-12">
+        <Reveal className="mx-auto max-w-7xl">
+          <Eyebrow>Business Plans</Eyebrow>
+          <h2 className="font-black leading-[1.04] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2rem,4vw,3rem)" }}>Built for business.</h2>
+          <p className="mt-3 text-sm text-black/60">Reliable fiber for SMEs, offices, clinics, cafes, and growing teams</p>
+        </Reveal>
+        <div className="mx-auto mt-12 grid max-w-7xl gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {businessPlans.slice(0, 3).map((plan, index) => <PlanCard key={plan.name} plan={plan} index={index} onApply={onApply} />)}
+        </div>
+        <div className="mx-auto mt-5 grid max-w-4xl gap-5 md:grid-cols-2">
+          {businessPlans.slice(3).map((plan, index) => <PlanCard key={plan.name} plan={plan} index={index + 3} onApply={onApply} />)}
+        </div>
+        <p className="mt-10 text-center text-sm leading-7 text-black/50">Business plans include static IP option · Priority support · <strong>sales@fibexph.com</strong></p>
+      </div>
+
+      <div id="section-dia" className="scroll-mt-32 bg-black px-5 py-20 text-white sm:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+          <Reveal>
+            <div className="mb-5 inline-flex rounded-full bg-[#F12400] px-5 py-2 text-xs font-black uppercase tracking-[0.18em]" style={{ fontFamily: "Origin Heavy" }}>Dedicated Internet Access</div>
+            <h2 className="font-black leading-[1.04]" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2rem,4vw,3rem)" }}>Enterprise-grade.<br /><span className="text-[#0119FE]">Uncompromised.</span></h2>
+            <p className="mt-6 text-sm leading-8 text-white/60">The DIA Line is designed for large establishments that require high-performance, secure, and always-on internet connectivity. This service provides a dedicated, uncontended fiber connection exclusively assigned to the client — ensuring consistent speeds, low latency, and reliable uptime.</p>
+            <button onClick={onApply} className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white transition hover:bg-[#0014d7]">
+              Request a Quote
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <div className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-white/[0.04]">
+              <div className="relative h-64">
+                <Image src="/assets/plans-dia.png" alt="Dedicated fiber service" fill className="object-cover" />
+              </div>
+              <div className="p-8">
+                <h3 className="font-black text-3xl leading-tight" style={{ fontFamily: "Origin Heavy" }}>Dedicated Fiber.<br />Just for you.</h3>
+                <p className="mt-4 text-sm leading-8 text-white/60">Unlike shared connections, your DIA line is never congested — no matter the time of day. Built for hospitals, universities, government offices, data centers, and large commercial establishments.</p>
+                <div className="mt-7 grid gap-3">
+                  {["Uncontended bandwidth — never shared", "Symmetrical upload & download speeds", "Static IP address included", "99.9% Uptime SLA", "24/7 monitoring & rapid response", "Dedicated account manager", "Custom enterprise agreements"].map((point) => (
+                    <div key={point} className="flex items-center gap-3 text-sm text-white/75"><CheckCircle className="h-5 w-5 text-[#0119FE]" />{point}</div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      <div className="grid gap-8 bg-[#0119FE] px-5 py-12 text-white sm:px-8 md:grid-cols-4 lg:px-12">
+        {[
+          { title: "Fast Installation", desc: "Scheduled within 3–5 business days. No long waits." },
+          { title: "Reliable Fiber", desc: "Fiber-optic lines built above industry standards." },
+          { title: "Low Latency", desc: "Ideal for gaming, video calls, and real-time apps." },
+          { title: "No Hidden Fees", desc: "₱999 means ₱999. No fine print. Ever." },
+        ].map((perk, index) => (
+          <Reveal key={perk.title} delay={index * 0.05}>
+            <div className="border-t-2 border-white/25 pt-6">
+              <h3 className="font-black text-lg" style={{ fontFamily: "Origin Heavy" }}>{perk.title}</h3>
+              <p className="mt-2 text-sm leading-7 text-white/65">{perk.desc}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  return (
+    <section className="bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      <Reveal className="mx-auto max-w-3xl text-center">
+        <Eyebrow>Testimonials</Eyebrow>
+        <h2 className="font-black leading-[1.03] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.35rem,5vw,4rem)" }}>What our customers say.</h2>
+        <p className="mt-4 text-black/60">Real people. Real speeds. Real satisfaction.</p>
+      </Reveal>
+      <div className="mx-auto mt-14 grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {testimonials.map((item, index) => (
+          <Reveal key={item.name} delay={index * 0.08}>
+            <motion.article className="flex h-full min-h-[220px] flex-col rounded-2xl bg-[#f5f5f5] p-7" whileHover={{ y: -6 }}>
+              <div className="font-black text-5xl leading-none text-[#e6e9ff]" style={{ fontFamily: "Origin Heavy" }}>&quot;</div>
+              <div className="mt-4 flex gap-1">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-[#F12400] text-[#F12400]" />)}</div>
+              <p className="mt-4 flex-1 text-sm leading-7 text-black/70">{item.text}</p>
+              <div className="mt-6 flex items-center justify-between gap-4 border-t border-black/10 pt-4">
+                <div className="flex min-w-0 items-center gap-3">
+                  <Image src={item.avatar} alt={item.name} width={44} height={44} className="h-11 w-11 rounded-full border-2 border-black/10" />
+                  <div className="min-w-0">
+                    <div className="truncate text-sm font-semibold text-black">{item.name}</div>
+                    <div className="mt-1 truncate text-xs text-black/45">{item.location}</div>
+                  </div>
+                </div>
+                <div className="shrink-0 rounded-md bg-[#e6e9ff] px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[#0119FE]">{item.plan}</div>
+              </div>
+            </motion.article>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AboutSection({ onNav }: { onNav: (page: PageName) => void }) {
+  const aboutStats = [
+    { value: "4,000", label: "Subscribers" },
+    { value: "9", label: "Universities Served" },
+    { value: "2021", label: "Year Established" },
+    { value: "99%", label: "Uptime Commitment" },
+  ];
+  const values = [
+    { title: "Honesty", desc: "No hidden charges. No exaggerated claims. Our prices never lie." },
+    { title: "Service", desc: "Technicians 7 days a week. 24/7 monitoring. We actually show up." },
+    { title: "Community", desc: "Fiber for barangays, schools, homes, cafes, and local businesses." },
+    { title: "Fairness", desc: "What you pay for, you actually get. No asterisks and no runaround." },
+  ];
+  const responsibilities = [
+    { title: "Bridge the Digital Divide", desc: "Providing reliable, affordable internet to underserved and rural communities so more Filipinos can access education, jobs, and opportunity." },
+    { title: "Support Education", desc: "Supplying 9 universities in Pampanga with dedicated connections, and supporting students with stable, affordable plans." },
+    { title: "Empower Local Businesses", desc: "Enabling SMEs, work-from-home entrepreneurs, and sari-sari stores with the connectivity they need to grow." },
+    { title: "Serve Local Government", desc: "Providing dedicated fiber lines to municipalities in Pampanga, ensuring safe and reliable service for public institutions." },
+    { title: "Community Involvement", desc: "Participating in disaster response, community programs, and local initiatives — not just as a provider, but as a true partner." },
+    { title: "Transparent & Responsive", desc: "Fair pricing, honest policies, and quick action during outages — because social responsibility starts with how we treat our customers." },
+  ];
+
+  return (
+    <section id="about" className="scroll-mt-20 bg-white">
+      <div className="relative h-[42vh] min-h-[300px] w-full overflow-hidden lg:h-[56vh] lg:min-h-[420px]">
+        <Image
+          src="/assets/skyline_about.png"
+          alt="Skyline view for FibeX about section"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
+
+      <div className="grid bg-[#000d99] px-5 text-white sm:px-8 md:grid-cols-4 lg:px-12">
+        {aboutStats.map((stat, index) => (
+          <Reveal key={stat.label} delay={index * 0.05}>
+            <div className="border-white/15 py-9 md:border-r md:pl-6 last:md:border-r-0">
+              <div className="font-black leading-none" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2rem,4vw,2.5rem)" }}>{stat.value}</div>
+              <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.32em] text-white/50">{stat.label}</div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:items-center lg:px-12 lg:py-28">
+        <Reveal>
+          <Eyebrow>Our Story</Eyebrow>
+          <h3 className="text-4xl font-black leading-tight text-black" style={{ fontFamily: "Origin Heavy" }}>Started with a simple belief.</h3>
+          <div className="mt-7 space-y-5 text-sm leading-8 text-black/62">
+            <p>FibeX began with the conviction that every Filipino deserves internet that is honest, reliable, and truly felt.</p>
+            <p>No fine print. No exaggerated claims. Just clear plans, fair pricing, and customer care that actually shows up.</p>
+            <p>What began as a challenger brand grew into a movement for fairness and transparency across households, students, and businesses.</p>
+          </div>
+        </Reveal>
+        <div className="grid gap-5">
+          {[
+            { title: "Est. 2021", desc: "Established in Pampanga with a mission to make honest fiber accessible." },
+            { title: "Built for Pampanga", desc: "Serving San Fernando, Macabebe, Apalit, Bitas, and Batasan." },
+            { title: "Registered & Secure", desc: "A duly registered corporation with a network built above industry standards." },
+          ].map((card, index) => (
+            <Reveal key={card.title} delay={index * 0.08}>
+              <motion.div className="rounded-[1.4rem] bg-[#f5f5f5] p-7" whileHover={{ x: 8 }}>
+                <h4 className="mb-2 text-xl font-black" style={{ fontFamily: "Origin Heavy" }}>{card.title}</h4>
+                <p className="text-sm leading-7 text-black/60">{card.desc}</p>
+              </motion.div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      <div className="bg-[#f5f5f5] px-5 py-20 sm:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
+          <MissionCard image="/assets/about-quality-service.png" label="Mission" title="Highest quality. Honest service." />
+          <MissionCard image="/assets/about-difference.png" label="Vision" title="Separate from the rest." dark />
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <Reveal className="text-center"><h3 className="text-4xl font-black text-black" style={{ fontFamily: "Origin Heavy" }}>Built on values.</h3></Reveal>
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {values.map((value, index) => (
+            <Reveal key={value.title} delay={index * 0.06}>
+              <div className="border-t-2 border-black pt-6"><h4 className="mb-3 text-2xl font-black" style={{ fontFamily: "Origin Heavy" }}>{value.title}</h4><p className="text-sm leading-7 text-black/60">{value.desc}</p></div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      <div className="bg-[#f5f5f5] px-5 py-20 sm:px-8 lg:px-12">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <Eyebrow>Social Responsibility</Eyebrow>
+          <h3 className="font-black leading-[1.04] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.25rem,4vw,3rem)" }}>More than just internet.</h3>
+        </Reveal>
+        <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {responsibilities.map((item, index) => (
+            <Reveal key={item.title} delay={index * 0.05}>
+              <motion.div className="h-full rounded-[1.25rem] border-t-2 border-[#0119FE] bg-white p-7" whileHover={{ y: -6 }}>
+                <h4 className="mb-3 text-sm font-semibold text-black">{item.title}</h4>
+                <p className="text-sm leading-7 text-black/60">{item.desc}</p>
+              </motion.div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      <CtaBanner onNav={onNav} />
+    </section>
+  );
+}
+
+function MissionCard({ image, label, title, dark = false }: { image: string; label: string; title: string; dark?: boolean }) {
+  return (
+    <Reveal>
+      <div className={`overflow-hidden rounded-[1.7rem] text-white ${dark ? "bg-[#000d99]" : "bg-[#0119FE]"}`}>
+        <Image src={image} alt={title} width={800} height={460} className="h-56 w-full object-cover" />
+        <div className="p-8">
+          <Eyebrow light>{label}</Eyebrow>
+          <h3 className="text-3xl font-black" style={{ fontFamily: "Origin Heavy" }}>{title}</h3>
+          <p className="mt-4 text-sm leading-8 text-white/70">We build reliable fiber service with transparent pricing, practical support, and a network designed to keep communities connected.</p>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
+function ContactSection() {
+  const [submitted, setSubmitted] = useState(false);
+  const hours = [
+    { day: "Monday – Friday", time: "9:00 AM – 5:00 PM" },
+    { day: "Saturday", time: "Closed" },
+    { day: "Sunday", time: "Closed" },
+  ];
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitted(true);
+  }
+
+  return (
+    <section id="contact" className="scroll-mt-20 bg-white">
+      <div className="bg-[#0119FE] px-5 py-20 text-white sm:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
+          <Reveal>
+            <Eyebrow light>Contact FibeX</Eyebrow>
+            <h2 className="font-black leading-[1] tracking-[-0.03em]" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(3rem,6vw,5rem)" }}>We&apos;re here.<br />Let&apos;s connect.</h2>
+            <p className="mt-5 max-w-xl text-sm leading-8 text-white/68">Tell us where you are, what you need, and our team will help you get connected.</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Image src="/assets/contact-customer-service.png" alt="FibeX customer service" width={760} height={520} className="rounded-[2rem] object-cover shadow-2xl" />
+          </Reveal>
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="bg-[#0119FE] px-5 py-16 text-white sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-xl lg:ml-auto">
+            <h3 className="mb-10 text-3xl font-black" style={{ fontFamily: "Origin Heavy" }}>Get in touch.</h3>
+            <div className="grid gap-7">{contacts.map((contact) => <ContactItem key={contact.label} {...contact} />)}</div>
+            <div className="mt-10 border-t border-white/20 pt-8">
+              <div className="mb-4 text-[9px] font-bold uppercase tracking-[0.34em] text-white/38">Office Hours</div>
+              <div className="grid gap-3">
+                {hours.map((row) => (
+                  <div key={row.day} className="flex justify-between gap-6 text-sm text-white/60">
+                    <span className="font-semibold text-white">{row.day}</span>
+                    <span>{row.time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-[#f5f5f5] px-5 py-16 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-2xl lg:mr-auto">
+            {submitted ? (
+              <Reveal>
+                <div className="rounded-[1.8rem] bg-white p-9 shadow-sm">
+                  <div className="mb-5 inline-flex rounded-full bg-[#0119FE] px-5 py-2 text-xs font-black uppercase tracking-[0.16em] text-white" style={{ fontFamily: "Origin Heavy" }}>Message received.</div>
+                  <h3 className="text-4xl font-black text-black" style={{ fontFamily: "Origin Heavy" }}>We&apos;ll be in touch soon.</h3>
+                  <p className="mt-5 text-sm leading-8 text-black/62">Thanks for reaching out. Our team will get back to you within 1-2 business days.</p>
+                  <button onClick={() => setSubmitted(false)} className="mt-8 rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white">Send Another Message</button>
+                </div>
+              </Reveal>
+            ) : (
+              <Reveal>
+                <form onSubmit={handleSubmit} className="rounded-[1.8rem] bg-white p-6 shadow-sm sm:p-9">
+                  <h3 className="text-3xl font-black text-black" style={{ fontFamily: "Origin Heavy" }}>Apply or inquire.</h3>
+                  <p className="mt-2 text-sm text-black/50">Fill out the form and our team will get back to you within 1-2 business days.</p>
+                  <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                    <Field label="Full Name" placeholder="Juan dela Cruz" required />
+                    <Field label="Phone Number" placeholder="09XX-XXX-XXXX" />
+                  </div>
+                  <div className="mt-5"><Field label="Email Address" type="email" placeholder="juan@email.com" required /></div>
+                  <label className="mt-5 block text-xs font-semibold tracking-[0.04em] text-black">Interested Plan</label>
+                  <select className="mt-2 w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#0119FE]">
+                    <option>Select a plan...</option>
+                    {[...residentialPlans, ...businessPlans].map((plan) => <option key={plan.name}>{plan.name} (₱{plan.price} / {plan.speed} {plan.unit})</option>)}
+                    <option>Dedicated Internet Access</option>
+                  </select>
+                  <label className="mt-5 block text-xs font-semibold tracking-[0.04em] text-black">Message</label>
+                  <textarea required rows={5} placeholder="Tell us your address, questions, or how we can help..." className="mt-2 w-full resize-y rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#0119FE]" />
+                  <button className="mt-6 w-full rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white transition hover:bg-[#0014d7]">Send Message</button>
+                </form>
+              </Reveal>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Field({ label, placeholder, type = "text", required = false }: { label: string; placeholder: string; type?: string; required?: boolean }) {
+  return (
+    <div>
+      <label className="block text-xs font-semibold tracking-[0.04em] text-black">{label}{required ? " *" : ""}</label>
+      <input required={required} type={type} placeholder={placeholder} className="mt-2 w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#0119FE]" />
     </div>
+  );
+}
+
+function ContactItem({ label, value, note, icon: Icon }: { label: string; value: string; note: string; icon: LucideIcon }) {
+  return (
+    <motion.div className="flex gap-4" whileHover={{ x: 5 }}>
+      <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15"><Icon className="h-5 w-5" /></div>
+      <div>
+        <div className="mb-1 text-[9px] font-bold uppercase tracking-[0.34em] text-white/38">{label}</div>
+        <div className="text-sm font-semibold leading-6">{value}</div>
+        <div className="mt-1 text-xs leading-5 text-white/45">{note}</div>
+      </div>
+    </motion.div>
+  );
+}
+
+function CtaBanner({ onNav }: { onNav: (page: PageName) => void }) {
+  return (
+    <section className="bg-[#0119FE] px-5 py-20 text-center text-white sm:px-8 lg:px-12">
+      <Reveal>
+        <Eyebrow light>Ready?</Eyebrow>
+        <h2 className="font-black leading-[1.04]" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.5rem,5vw,4rem)" }}>WiFi for all.</h2>
+        <p className="mt-4 text-base text-white/65">Fast, reliable, and honest — for every home and business.</p>
+        <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          <button onClick={() => onNav("Plans")} className="rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#0119FE]">See Plans</button>
+          <button onClick={() => onNav("Contact")} className="rounded-full border border-white/55 px-8 py-4 text-sm font-semibold text-white">Apply Now</button>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function Footer({ onNav }: { onNav: (page: PageName) => void }) {
+  return (
+    <footer className="bg-[#0119FE] px-5 py-14 text-white sm:px-8 lg:px-12">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+        <div>
+          <div className="flex items-center gap-3">
+            <Image src="/logos/white_logo.png" alt="FibeX" width={230} height={92} className="h-auto w-[230px]" />
+          </div>
+          <div className="mt-6 text-sm font-bold uppercase tracking-[0.35em] text-white/70 sm:text-base">True Speed. True Connection.</div>
+          <p className="mt-5 max-w-md text-base leading-8 text-white/82 sm:text-lg">Honest, fast fiber internet for every Filipino household. No hidden fees. No runaround. Just real speed.</p>
+        </div>
+        <FooterColumn title="Plans" items={["Plans"]} onNav={onNav} />
+        <FooterColumn title="Company" items={["About", "Contact"]} onNav={onNav} />
+        <div><h4 className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-white/60">Contact</h4><div className="grid gap-3 text-sm text-white/85"><span>sales@fibexph.com</span><span>0967-348-2428</span><span>(044) 305-8173</span><span>www.fibexph.com</span></div></div>
+      </div>
+      <div className="mx-auto mt-12 flex max-w-7xl flex-col justify-between gap-5 border-t border-white/20 pt-7 text-xs text-white/68 sm:flex-row"><span>© 2025 FibeX Broadband Inc. All rights reserved. Philippines.</span><span className="rounded-full bg-[#F12400] px-5 py-2 font-black text-white" style={{ fontFamily: "Origin Heavy" }}>WiFi for All.</span></div>
+    </footer>
+  );
+}
+
+function FooterColumn({ title, items, onNav }: { title: string; items: PageName[]; onNav: (page: PageName) => void }) {
+  return (
+    <div>
+      <h4 className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-white/60">{title}</h4>
+      <div className="grid gap-3 text-sm text-white/85">
+        {items.map((item) => {
+          return <button key={item} onClick={() => onNav(item)} className="text-left transition hover:text-white">{item}</button>;
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default function HomePage() {
+  const [page, setPage] = useState<PageName>("Home");
+
+  function navigate(nextPage: PageName) {
+    setPage(nextPage);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  return (
+    <main className="min-h-screen bg-white text-black">
+      <Header page={page} onNav={navigate} />
+      {page === "Home" && (
+        <>
+          <Hero onNav={navigate} />
+          <WhyFibex />
+          <HomePlansPreview onNav={navigate} />
+          <Testimonials />
+          <CtaBanner onNav={navigate} />
+        </>
+      )}
+      {page === "Plans" && (
+        <div className="pt-[68px]">
+          <PlansSection onApply={() => navigate("Contact")} />
+        </div>
+      )}
+      {page === "About" && (
+        <div className="pt-[68px]">
+          <AboutSection onNav={navigate} />
+        </div>
+      )}
+      {page === "Contact" && (
+        <div className="pt-[68px]">
+          <ContactSection />
+        </div>
+      )}
+      <Footer onNav={navigate} />
+    </main>
   );
 }
