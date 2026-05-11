@@ -290,7 +290,7 @@ function Header({ page, onNav }: { page: PageName; onNav: (page: PageName) => vo
                   setMenuOpen(false);
                   onNav(item.label as PageName);
                 }}
-                className={`text-left text-sm font-semibold uppercase tracking-[0.18em] ${
+                className={`w-full rounded-xl px-2 py-2 text-left text-sm font-semibold uppercase tracking-[0.18em] ${
                   page === item.label ? "text-[#0119FE]" : "text-black/65"
                 }`}
               >
@@ -302,7 +302,7 @@ function Header({ page, onNav }: { page: PageName; onNav: (page: PageName) => vo
                 setMenuOpen(false);
                 onNav("Contact");
               }}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white"
             >
               Apply Now
               <ArrowRight className="h-4 w-4" />
@@ -316,23 +316,23 @@ function Header({ page, onNav }: { page: PageName; onNav: (page: PageName) => vo
 
 function Hero({ onNav }: { onNav: (page: PageName) => void }) {
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden bg-[#ffffff] pt-[68px]">
-      <div className="relative z-10 mx-auto min-h-[calc(100vh-68px)] w-full px-5 py-10 pb-28 sm:px-8 lg:min-h-[calc(100vh-68px)] lg:px-12 lg:py-0 lg:pb-0">
+    <section id="home" className="relative overflow-hidden bg-[#ffffff] pt-[68px] lg:min-h-screen">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 py-10 pb-12 sm:px-8 sm:py-12 lg:min-h-[calc(100vh-68px)] lg:px-12 lg:py-0 lg:pb-0">
         <motion.div
           initial={{ opacity: 0, y: -32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative z-30 lg:absolute lg:left-[34rem] lg:top-[4.5rem]"
+          className="relative z-30 mx-auto max-w-[560px] text-center sm:text-left lg:absolute lg:left-[calc(50%-clamp(520px,41vw,740px)+clamp(6rem,9vw,12rem))] lg:top-[clamp(2rem,7vh,4.5rem)] lg:mx-0"
         >
-          <h1 className="max-w-[560px] font-black leading-[0.9] tracking-[-0.065em] text-black" style={{ fontFamily: "Origin Heavy" }}>
-            <span className="block text-[clamp(3.2rem,6.5vw,5.6rem)]">Zero lags,</span>
-            <span className="block text-[clamp(3.2rem,6.5vw,5.6rem)] text-[#0119FE]">Stable wins</span>
+          <h1 className="font-black leading-[0.92] tracking-[-0.055em] text-black sm:tracking-[-0.065em]" style={{ fontFamily: "Origin Heavy" }}>
+            <span className="block text-[clamp(2.8rem,14vw,5.6rem)] sm:text-[clamp(3.2rem,6.5vw,5.6rem)]">Zero lags,</span>
+            <span className="block text-[clamp(2.8rem,14vw,5.6rem)] text-[#0119FE] sm:text-[clamp(3.2rem,6.5vw,5.6rem)]">Stable wins</span>
           </h1>
           <p className="mt-5 max-w-md text-base font-semibold leading-8 text-black/65">Your journey starts here</p>
-          <div className="mt-8 flex flex-col sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-0">
             <motion.button
               onClick={() => onNav("Plans")}
-              className="mb-3 inline-flex items-center justify-center rounded-full bg-[#0119FE] px-9 py-5 text-base font-semibold text-white shadow-[0_16px_40px_rgba(1,25,254,0.22)] transition hover:bg-[#0014d7] sm:mb-0 sm:mr-3"
+              className="inline-flex items-center justify-center rounded-full bg-[#0119FE] px-8 py-4 text-base font-semibold text-white shadow-[0_16px_40px_rgba(1,25,254,0.22)] transition hover:bg-[#0014d7] sm:mr-3 sm:px-9 sm:py-5"
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -345,7 +345,7 @@ function Hero({ onNav }: { onNav: (page: PageName) => void }) {
                 event.preventDefault();
                 onNav("Plans");
               }}
-              className="inline-flex items-center justify-center rounded-full border-2 border-black px-9 py-5 text-base font-semibold text-black transition hover:bg-black hover:text-white"
+              className="inline-flex items-center justify-center rounded-full border-2 border-black bg-white/75 px-8 py-4 text-base font-semibold text-black backdrop-blur-sm transition hover:bg-black hover:text-white sm:px-9 sm:py-5"
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -355,24 +355,24 @@ function Hero({ onNav }: { onNav: (page: PageName) => void }) {
         </motion.div>
 
         <motion.div
-          className="relative z-20 mx-auto mt-12 flex min-h-[700px] w-full max-w-[1700px] items-end justify-center overflow-hidden rounded-t-[44px] px-4 pt-10 sm:px-6 sm:pt-14 lg:absolute lg:bottom-0 lg:left-[52%] lg:mt-0 lg:h-full lg:min-h-0 lg:-translate-x-1/2 lg:px-8 lg:pt-0"
+          className="relative z-10 mx-auto mt-10 flex min-h-[360px] w-full max-w-[1700px] items-end justify-center overflow-hidden rounded-t-[32px] px-2 pt-6 sm:min-h-[540px] sm:rounded-t-[44px] sm:px-6 sm:pt-14 md:min-h-[640px] lg:absolute lg:bottom-0 lg:left-1/2 lg:mt-0 lg:min-h-0 lg:w-[clamp(1280px,96vw,1780px)] lg:max-w-none lg:-translate-x-1/2 lg:px-0 lg:pt-0"
           initial={{ opacity: 0, y: 46 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.18 }}
         >
-          <motion.div className="relative z-10 flex w-full justify-center lg:translate-y-[4.5rem]" animate={{ y: [0, -8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
-            <Image src="/assets/home-hero.png" alt="FibeX customers" width={1650} height={1820} priority className="h-[700px] w-auto max-w-none object-contain sm:h-[780px] lg:h-[1020px]" />
+          <motion.div className="relative z-10 flex w-full justify-center lg:translate-y-[clamp(0rem,2vh,1.5rem)]">
+            <Image src="/assets/home-hero.png" alt="FibeX customers" width={1650} height={1820} priority className="h-[430px] w-auto max-w-none object-contain sm:h-[640px] md:h-[760px] lg:h-auto lg:w-full lg:max-w-none" />
           </motion.div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, x: 42 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="relative z-30 mx-auto mt-8 flex max-w-[700px] flex-col items-start lg:absolute lg:right-[30rem] lg:top-[32%] lg:mt-0 lg:items-end">
-          <div className="rounded-[1.8rem] bg-[#0119FE] p-8 text-left shadow-[0_24px_80px_rgba(1,25,254,0.25)] lg:text-right">
-            <p className="font-black leading-[1.03] tracking-[-0.03em] text-white" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.4rem,3.9vw,3.4rem)" }}>
+        <motion.div initial={{ opacity: 0, x: 42 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="relative z-30 mx-auto mt-6 flex max-w-[700px] flex-col items-stretch sm:items-start lg:absolute lg:left-[calc(50%+clamp(640px,48vw,890px)-clamp(23rem,29vw,33rem))] lg:top-[clamp(10.5rem,28vh,17rem)] lg:mt-0 lg:max-w-[clamp(210px,18vw,340px)] lg:items-end">
+          <div className="rounded-[1.5rem] bg-[#0119FE] p-6 text-left shadow-[0_24px_80px_rgba(1,25,254,0.25)] sm:rounded-[1.8rem] sm:p-8 lg:p-[clamp(1.25rem,2vw,2rem)] lg:text-right">
+            <p className="font-black leading-[1.03] tracking-[-0.03em] text-white" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(1.85rem,2.75vw,3.4rem)" }}>
               Speed<br />promised.<br />Speed<br />delivered.
             </p>
           </div>
-          <div className="mt-4 flex flex-col items-start lg:items-end">
-            <div className="rounded-full bg-[#F12400] px-10 py-4 text-lg font-black text-white" style={{ fontFamily: "Origin Heavy" }}>as low as ₱999 / month</div>
+          <div className="mt-4 flex flex-col items-stretch sm:items-start lg:items-end">
+            <div className="rounded-full bg-[#F12400] px-6 py-4 text-center text-base font-black text-white sm:px-10 sm:text-lg" style={{ fontFamily: "Origin Heavy" }}>as low as ₱999 / month</div>
             <p className="mt-2 max-w-sm text-sm leading-7 text-black/55 lg:text-right"><strong>Unlimited data.</strong><br />Ideal for everyday streaming, gaming & WFH.</p>
           </div>
         </motion.div>
@@ -424,18 +424,18 @@ function PlanCard({ plan, index, onApply }: { plan: Plan; index: number; onApply
   return (
     <motion.article
       layout
-      className={`relative flex h-full flex-col overflow-hidden rounded-[1.6rem] p-7 shadow-lg ${dark ? "bg-[#0119FE] text-white shadow-blue-900/20" : "bg-white text-black shadow-black/5"}`}
+      className={`relative flex h-full flex-col overflow-hidden rounded-[1.6rem] p-5 shadow-lg sm:p-7 ${dark ? "bg-[#0119FE] text-white shadow-blue-900/20" : "bg-white text-black shadow-black/5"}`}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
       whileHover={{ y: -8, scale: 1.015 }}
     >
-      {plan.featured && <div className="absolute right-5 top-5 rounded-full bg-[#F12400] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white">Popular</div>}
+      {plan.featured && <div className="absolute right-4 top-4 rounded-full bg-[#F12400] px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em] text-white sm:right-5 sm:top-5 sm:px-4 sm:text-[10px] sm:tracking-[0.18em]">Popular</div>}
       <p className={`mb-3 text-[10px] font-bold uppercase tracking-[0.35em] ${dark ? "text-white/45" : "text-black/45"}`}>FibeX</p>
-      <h3 className="min-h-12 pr-16 text-xl font-black leading-tight" style={{ fontFamily: "Origin Heavy" }}>{plan.name}</h3>
+      <h3 className="min-h-12 pr-20 text-lg font-black leading-tight sm:text-xl" style={{ fontFamily: "Origin Heavy" }}>{plan.name}</h3>
       <div className="mt-6 flex items-end gap-2">
-        <span className="text-[4rem] font-black leading-none" style={{ fontFamily: "Origin Heavy" }}>{plan.speed}</span>
+        <span className="text-[3.25rem] font-black leading-none sm:text-[4rem]" style={{ fontFamily: "Origin Heavy" }}>{plan.speed}</span>
         <span className={`mb-3 text-sm font-semibold ${dark ? "text-white/65" : "text-black/45"}`}>{plan.unit}</span>
       </div>
       <div className="mt-2 text-lg font-semibold">₱{plan.price}<span className="text-sm font-normal opacity-70">/month</span></div>
@@ -471,8 +471,8 @@ function HomePlansPreview({ onNav }: { onNav: (page: PageName) => void }) {
   };
 
   return (
-    <section className="bg-[#f5f5f5] px-5 py-20 sm:px-8 lg:px-12">
-      <div className="mx-auto flex max-w-fit rounded-full bg-black/10 p-1">
+    <section className="bg-[#f5f5f5] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+      <div className="mx-auto flex w-full max-w-3xl overflow-x-auto rounded-full bg-black/10 p-1">
         {[
           { id: "residential", label: "Residential" },
           { id: "business", label: "Business" },
@@ -481,7 +481,7 @@ function HomePlansPreview({ onNav }: { onNav: (page: PageName) => void }) {
           <button
             key={tab.id}
             onClick={() => setCategory(tab.id as "residential" | "business" | "dia")}
-            className={`rounded-full px-4 py-2 text-xs font-semibold transition sm:px-6 ${
+            className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition sm:flex-1 sm:px-6 ${
               category === tab.id ? "bg-[#0119FE] text-white shadow-lg shadow-blue-900/20" : "text-black/55 hover:text-black"
             }`}
           >
@@ -491,13 +491,13 @@ function HomePlansPreview({ onNav }: { onNav: (page: PageName) => void }) {
       </div>
 
       {category === "dia" ? (
-        <Reveal className="mx-auto mt-12 grid max-w-6xl overflow-hidden rounded-[2rem] bg-black text-white lg:grid-cols-2">
-          <div className="relative min-h-[320px]">
+        <Reveal className="mx-auto mt-10 grid max-w-6xl overflow-hidden rounded-[1.5rem] bg-black text-white sm:mt-12 sm:rounded-[2rem] lg:grid-cols-2">
+          <div className="relative min-h-[240px] sm:min-h-[320px]">
             <Image src="/assets/plans-dia.png" alt="Dedicated Internet Access" fill className="object-cover opacity-80" />
           </div>
-          <div className="p-8 sm:p-12">
+          <div className="p-6 sm:p-12">
             <div className="mb-5 inline-flex rounded-full bg-[#F12400] px-5 py-2 text-xs font-black uppercase tracking-[0.18em]" style={{ fontFamily: "Origin Heavy" }}>DIA Line</div>
-            <h3 className="text-4xl font-black leading-tight" style={{ fontFamily: "Origin Heavy" }}>Dedicated Fiber.<br />Just for you.</h3>
+            <h3 className="text-3xl font-black leading-tight sm:text-4xl" style={{ fontFamily: "Origin Heavy" }}>Dedicated Fiber.<br />Just for you.</h3>
             <p className="mt-6 text-sm leading-8 text-white/62">Designed for large establishments that require secure, always-on internet through a dedicated, uncontended fiber connection.</p>
             <button onClick={() => onNav("Plans")} className="mt-8 rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white">Learn More & Request a Quote</button>
           </div>
@@ -509,14 +509,14 @@ function HomePlansPreview({ onNav }: { onNav: (page: PageName) => void }) {
             <h2 className="font-black leading-[1.03] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.15rem,4vw,3.4rem)" }}>{copy[category].title}</h2>
             <p className="mt-3 text-sm text-black/60">{copy[category].sub}</p>
           </Reveal>
-          <div className="mx-auto mt-10 grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mx-auto mt-10 grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {plans.map((plan, index) => {
               const dark = index % 2 === 1 || plan.featured;
               return (
                 <motion.button
                   key={plan.name}
                   onClick={() => onNav("Plans")}
-                  className={`rounded-[1.3rem] p-6 text-left shadow-lg transition ${dark ? "bg-[#0119FE] text-white shadow-blue-900/15" : "bg-white text-black shadow-black/5"}`}
+                  className={`rounded-[1.3rem] p-5 text-left shadow-lg transition sm:p-6 ${dark ? "bg-[#0119FE] text-white shadow-blue-900/15" : "bg-white text-black shadow-black/5"}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -525,7 +525,7 @@ function HomePlansPreview({ onNav }: { onNav: (page: PageName) => void }) {
                 >
                   <div className={`mb-2 text-[9px] font-bold uppercase tracking-[0.32em] ${dark ? "text-white/45" : "text-black/45"}`}>FibeX</div>
                   <div className="mb-4 text-sm font-black leading-tight" style={{ fontFamily: "Origin Heavy" }}>{plan.name.replace("FIBEX ", "").replace("BUSINESS ", "")}</div>
-                  <div className={`text-5xl font-black leading-none ${dark ? "text-white" : "text-[#0119FE]"}`} style={{ fontFamily: "Origin Heavy" }}>{plan.speed}</div>
+                  <div className={`text-4xl font-black leading-none sm:text-5xl ${dark ? "text-white" : "text-[#0119FE]"}`} style={{ fontFamily: "Origin Heavy" }}>{plan.speed}</div>
                   <div className={`mt-1 text-xs ${dark ? "text-white/55" : "text-black/45"}`}>{plan.unit}</div>
                   <div className="mt-5 text-sm font-semibold">₱{plan.price}<span className="text-xs font-normal opacity-70">/mo</span></div>
                 </motion.button>
@@ -544,7 +544,7 @@ function HomePlansPreview({ onNav }: { onNav: (page: PageName) => void }) {
 function PlansSection({ onApply }: { onApply: () => void }) {
   return (
     <section id="plans" className="scroll-mt-20 bg-white">
-      <div className="bg-[#0119FE] px-5 py-20 text-center text-white sm:px-8 lg:px-12">
+      <div className="bg-[#0119FE] px-5 py-16 text-center text-white sm:px-8 sm:py-20 lg:px-12">
         <Reveal className="mx-auto max-w-3xl">
           <Eyebrow light>FibeX Plans</Eyebrow>
           <h1 className="font-black leading-[1.03] tracking-[-0.03em]" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.5rem,5vw,4.25rem)" }}>Pick your speed.</h1>
@@ -553,19 +553,19 @@ function PlansSection({ onApply }: { onApply: () => void }) {
         </Reveal>
       </div>
 
-      <div className="sticky top-[68px] z-30 flex justify-center bg-black">
+      <div className="sticky top-[68px] z-30 flex justify-start overflow-x-auto bg-black sm:justify-center">
         {[
           { href: "#section-residential", label: "Residential" },
           { href: "#section-business", label: "Business" },
           { href: "#section-dia", label: "Direct Internet Access" },
         ].map((item) => (
-          <a key={item.href} href={item.href} className="border-b-2 border-transparent px-4 py-4 text-center text-[11px] font-semibold tracking-[0.08em] text-white/45 transition hover:border-[#0119FE] hover:text-white sm:px-8 sm:text-sm">
+          <a key={item.href} href={item.href} className="shrink-0 border-b-2 border-transparent px-4 py-4 text-center text-[11px] font-semibold tracking-[0.08em] text-white/45 transition hover:border-[#0119FE] hover:text-white sm:px-8 sm:text-sm">
             {item.label}
           </a>
         ))}
       </div>
 
-      <div id="section-residential" className="scroll-mt-32 bg-[#f5f5f5] px-5 py-20 sm:px-8 lg:px-12">
+      <div id="section-residential" className="scroll-mt-32 bg-[#f5f5f5] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <Reveal className="mx-auto max-w-7xl">
           <Eyebrow>Residential Plans</Eyebrow>
           <h2 className="font-black leading-[1.04] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2rem,4vw,3rem)" }}>Honest plans. Real speeds.</h2>
@@ -580,7 +580,7 @@ function PlansSection({ onApply }: { onApply: () => void }) {
         <p className="mt-10 text-center text-sm leading-7 text-black/50">Prices exclusive of VAT · Free installation · Low latency · <strong>Apply: sales@fibexph.com</strong></p>
       </div>
 
-      <div id="section-business" className="scroll-mt-32 bg-white px-5 py-20 sm:px-8 lg:px-12">
+      <div id="section-business" className="scroll-mt-32 bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <Reveal className="mx-auto max-w-7xl">
           <Eyebrow>Business Plans</Eyebrow>
           <h2 className="font-black leading-[1.04] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2rem,4vw,3rem)" }}>Built for business.</h2>
@@ -595,7 +595,7 @@ function PlansSection({ onApply }: { onApply: () => void }) {
         <p className="mt-10 text-center text-sm leading-7 text-black/50">Business plans include static IP option · Priority support · <strong>sales@fibexph.com</strong></p>
       </div>
 
-      <div id="section-dia" className="scroll-mt-32 bg-black px-5 py-20 text-white sm:px-8 lg:px-12">
+      <div id="section-dia" className="scroll-mt-32 bg-black px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <div className="mb-5 inline-flex rounded-full bg-[#F12400] px-5 py-2 text-xs font-black uppercase tracking-[0.18em]" style={{ fontFamily: "Origin Heavy" }}>Dedicated Internet Access</div>
@@ -611,8 +611,8 @@ function PlansSection({ onApply }: { onApply: () => void }) {
               <div className="relative h-64">
                 <Image src="/assets/plans-dia.png" alt="Dedicated fiber service" fill className="object-cover" />
               </div>
-              <div className="p-8">
-                <h3 className="font-black text-3xl leading-tight" style={{ fontFamily: "Origin Heavy" }}>Dedicated Fiber.<br />Just for you.</h3>
+              <div className="p-6 sm:p-8">
+                <h3 className="text-2xl font-black leading-tight sm:text-3xl" style={{ fontFamily: "Origin Heavy" }}>Dedicated Fiber.<br />Just for you.</h3>
                 <p className="mt-4 text-sm leading-8 text-white/60">Unlike shared connections, your DIA line is never congested — no matter the time of day. Built for hospitals, universities, government offices, data centers, and large commercial establishments.</p>
                 <div className="mt-7 grid gap-3">
                   {["Uncontended bandwidth — never shared", "Symmetrical upload & download speeds", "Static IP address included", "99.9% Uptime SLA", "24/7 monitoring & rapid response", "Dedicated account manager", "Custom enterprise agreements"].map((point) => (
@@ -625,7 +625,7 @@ function PlansSection({ onApply }: { onApply: () => void }) {
         </div>
       </div>
 
-      <div className="grid gap-8 bg-[#0119FE] px-5 py-12 text-white sm:px-8 md:grid-cols-4 lg:px-12">
+      <div className="grid gap-8 bg-[#0119FE] px-5 py-12 text-white sm:grid-cols-2 sm:px-8 md:grid-cols-4 lg:px-12">
         {[
           { title: "Fast Installation", desc: "Scheduled within 3–5 business days. No long waits." },
           { title: "Reliable Fiber", desc: "Fiber-optic lines built above industry standards." },
@@ -646,7 +646,7 @@ function PlansSection({ onApply }: { onApply: () => void }) {
 
 function Testimonials() {
   return (
-    <section className="bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+    <section className="bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-28">
       <Reveal className="mx-auto max-w-3xl text-center">
         <Eyebrow>Testimonials</Eyebrow>
         <h2 className="font-black leading-[1.03] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.35rem,5vw,4rem)" }}>What our customers say.</h2>
@@ -655,11 +655,11 @@ function Testimonials() {
       <div className="mx-auto mt-14 grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((item, index) => (
           <Reveal key={item.name} delay={index * 0.08}>
-            <motion.article className="flex h-full min-h-[220px] flex-col rounded-2xl bg-[#f5f5f5] p-7" whileHover={{ y: -6 }}>
+            <motion.article className="flex h-full min-h-[220px] flex-col rounded-2xl bg-[#f5f5f5] p-6 sm:p-7" whileHover={{ y: -6 }}>
               <div className="font-black text-5xl leading-none text-[#e6e9ff]" style={{ fontFamily: "Origin Heavy" }}>&quot;</div>
               <div className="mt-4 flex gap-1">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-[#F12400] text-[#F12400]" />)}</div>
               <p className="mt-4 flex-1 text-sm leading-7 text-black/70">{item.text}</p>
-              <div className="mt-6 flex items-center justify-between gap-4 border-t border-black/10 pt-4">
+              <div className="mt-6 flex flex-col gap-4 border-t border-black/10 pt-4 min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-between">
                 <div className="flex min-w-0 items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-black/10 bg-[#0119FE] text-xs font-bold tracking-[0.08em] text-white">
                     {getInitials(item.name)}
@@ -669,7 +669,7 @@ function Testimonials() {
                     <div className="mt-1 truncate text-xs text-black/45">{item.location}</div>
                   </div>
                 </div>
-                <div className="shrink-0 rounded-md bg-[#e6e9ff] px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[#0119FE]">{item.plan}</div>
+                <div className="w-fit shrink-0 rounded-md bg-[#e6e9ff] px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[#0119FE]">{item.plan}</div>
               </div>
             </motion.article>
           </Reveal>
@@ -703,7 +703,7 @@ function AboutSection({ onNav }: { onNav: (page: PageName) => void }) {
 
   return (
     <section id="about" className="scroll-mt-20 bg-white">
-      <div className="relative h-[42vh] min-h-[300px] w-full overflow-hidden lg:h-[56vh] lg:min-h-[420px]">
+      <div className="relative h-[34vh] min-h-[240px] w-full overflow-hidden sm:h-[42vh] sm:min-h-[300px] lg:h-[56vh] lg:min-h-[420px]">
         <Image
           src="/assets/skyline_about.png"
           alt="Skyline view for FibeX about section"
@@ -714,10 +714,10 @@ function AboutSection({ onNav }: { onNav: (page: PageName) => void }) {
         />
       </div>
 
-      <div className="grid bg-[#000d99] px-5 text-white sm:px-8 md:grid-cols-4 lg:px-12">
+      <div className="grid bg-[#000d99] px-5 text-white sm:grid-cols-2 sm:px-8 md:grid-cols-4 lg:px-12">
         {aboutStats.map((stat, index) => (
           <Reveal key={stat.label} delay={index * 0.05}>
-            <div className="border-white/15 py-9 md:border-r md:pl-6 last:md:border-r-0">
+            <div className="border-b border-white/15 py-7 sm:py-9 md:border-b-0 md:border-r md:pl-6 last:border-b-0 last:md:border-r-0">
               <div className="font-black leading-none" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2rem,4vw,2.5rem)" }}>{stat.value}</div>
               <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.32em] text-white/50">{stat.label}</div>
             </div>
@@ -725,10 +725,10 @@ function AboutSection({ onNav }: { onNav: (page: PageName) => void }) {
         ))}
       </div>
 
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:items-center lg:px-12 lg:py-28">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-2 lg:items-center lg:gap-12 lg:px-12 lg:py-28">
         <Reveal>
           <Eyebrow>Our Story</Eyebrow>
-          <h3 className="text-4xl font-black leading-tight text-black" style={{ fontFamily: "Origin Heavy" }}>Started with a simple belief.</h3>
+          <h3 className="text-3xl font-black leading-tight text-black sm:text-4xl" style={{ fontFamily: "Origin Heavy" }}>Started with a simple belief.</h3>
           <div className="mt-7 space-y-5 text-sm leading-8 text-black/62">
             <p>FibeX began with the conviction that every Filipino deserves internet that is honest, reliable, and truly felt.</p>
             <p>No fine print. No exaggerated claims. Just clear plans, fair pricing, and customer care that actually shows up.</p>
@@ -751,15 +751,15 @@ function AboutSection({ onNav }: { onNav: (page: PageName) => void }) {
         </div>
       </div>
 
-      <div className="bg-[#f5f5f5] px-5 py-20 sm:px-8 lg:px-12">
+      <div className="bg-[#f5f5f5] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
           <MissionCard image="/assets/about-quality-service.png" label="Mission" title="Highest quality. Honest service." />
           <MissionCard image="/assets/about-difference.png" label="Vision" title="Separate from the rest." dark />
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <Reveal className="text-center"><h3 className="text-4xl font-black text-black" style={{ fontFamily: "Origin Heavy" }}>Built on values.</h3></Reveal>
+      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-28">
+        <Reveal className="text-center"><h3 className="text-3xl font-black text-black sm:text-4xl" style={{ fontFamily: "Origin Heavy" }}>Built on values.</h3></Reveal>
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((value, index) => (
             <Reveal key={value.title} delay={index * 0.06}>
@@ -769,7 +769,7 @@ function AboutSection({ onNav }: { onNav: (page: PageName) => void }) {
         </div>
       </div>
 
-      <div className="bg-[#f5f5f5] px-5 py-20 sm:px-8 lg:px-12">
+      <div className="bg-[#f5f5f5] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <Reveal className="mx-auto max-w-3xl text-center">
           <Eyebrow>Social Responsibility</Eyebrow>
           <h3 className="font-black leading-[1.04] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.25rem,4vw,3rem)" }}>More than just internet.</h3>
@@ -795,10 +795,10 @@ function MissionCard({ image, label, title, dark = false }: { image: string; lab
   return (
     <Reveal>
       <div className={`overflow-hidden rounded-[1.7rem] text-white ${dark ? "bg-[#000d99]" : "bg-[#0119FE]"}`}>
-        <Image src={image} alt={title} width={800} height={460} className="h-56 w-full object-cover" />
-        <div className="p-8">
+        <Image src={image} alt={title} width={800} height={460} className="h-48 w-full object-cover sm:h-56" />
+        <div className="p-6 sm:p-8">
           <Eyebrow light>{label}</Eyebrow>
-          <h3 className="text-3xl font-black" style={{ fontFamily: "Origin Heavy" }}>{title}</h3>
+          <h3 className="text-2xl font-black sm:text-3xl" style={{ fontFamily: "Origin Heavy" }}>{title}</h3>
           <p className="mt-4 text-sm leading-8 text-white/70">We build reliable fiber service with transparent pricing, practical support, and a network designed to keep communities connected.</p>
         </div>
       </div>
@@ -821,7 +821,7 @@ function ContactSection() {
 
   return (
     <section id="contact" className="scroll-mt-20 bg-white">
-      <div className="bg-[#0119FE] px-5 py-20 text-white sm:px-8 lg:px-12">
+      <div className="bg-[#0119FE] px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
           <Reveal>
             <Eyebrow light>Contact FibeX</Eyebrow>
@@ -829,13 +829,13 @@ function ContactSection() {
             <p className="mt-5 max-w-xl text-sm leading-8 text-white/68">Tell us where you are, what you need, and our team will help you get connected.</p>
           </Reveal>
           <Reveal delay={0.1}>
-            <Image src="/assets/contact-customer-service.png" alt="FibeX customer service" width={760} height={520} className="rounded-[2rem] object-cover shadow-2xl" />
+            <Image src="/assets/contact-customer-service.png" alt="FibeX customer service" width={760} height={520} className="h-auto w-full rounded-[1.5rem] object-cover shadow-2xl sm:rounded-[2rem]" />
           </Reveal>
         </div>
       </div>
 
       <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="bg-[#0119FE] px-5 py-16 text-white sm:px-8 lg:px-12">
+        <div className="bg-[#0119FE] px-5 py-14 text-white sm:px-8 sm:py-16 lg:px-12">
           <div className="mx-auto max-w-xl lg:ml-auto">
             <h3 className="mb-10 text-3xl font-black" style={{ fontFamily: "Origin Heavy" }}>Get in touch.</h3>
             <div className="grid gap-7">{contacts.map((contact) => <ContactItem key={contact.label} {...contact} />)}</div>
@@ -843,7 +843,7 @@ function ContactSection() {
               <div className="mb-4 text-[9px] font-bold uppercase tracking-[0.34em] text-white/38">Office Hours</div>
               <div className="grid gap-3">
                 {hours.map((row) => (
-                  <div key={row.day} className="flex justify-between gap-6 text-sm text-white/60">
+                  <div key={row.day} className="flex flex-col gap-1 text-sm text-white/60 min-[420px]:flex-row min-[420px]:justify-between min-[420px]:gap-6">
                     <span className="font-semibold text-white">{row.day}</span>
                     <span>{row.time}</span>
                   </div>
@@ -852,13 +852,13 @@ function ContactSection() {
             </div>
           </div>
         </div>
-        <div className="bg-[#f5f5f5] px-5 py-16 sm:px-8 lg:px-12">
+        <div className="bg-[#f5f5f5] px-5 py-14 sm:px-8 sm:py-16 lg:px-12">
           <div className="mx-auto max-w-2xl lg:mr-auto">
             {submitted ? (
               <Reveal>
-                <div className="rounded-[1.8rem] bg-white p-9 shadow-sm">
+                <div className="rounded-[1.8rem] bg-white p-6 shadow-sm sm:p-9">
                   <div className="mb-5 inline-flex rounded-full bg-[#0119FE] px-5 py-2 text-xs font-black uppercase tracking-[0.16em] text-white" style={{ fontFamily: "Origin Heavy" }}>Message received.</div>
-                  <h3 className="text-4xl font-black text-black" style={{ fontFamily: "Origin Heavy" }}>We&apos;ll be in touch soon.</h3>
+                  <h3 className="text-3xl font-black text-black sm:text-4xl" style={{ fontFamily: "Origin Heavy" }}>We&apos;ll be in touch soon.</h3>
                   <p className="mt-5 text-sm leading-8 text-black/62">Thanks for reaching out. Our team will get back to you within 1-2 business days.</p>
                   <button onClick={() => setSubmitted(false)} className="mt-8 rounded-full bg-[#0119FE] px-7 py-4 text-sm font-semibold text-white">Send Another Message</button>
                 </div>
@@ -916,11 +916,11 @@ function ContactItem({ label, value, note, icon: Icon }: { label: string; value:
 
 function CtaBanner({ onNav }: { onNav: (page: PageName) => void }) {
   return (
-    <section className="bg-[#0119FE] px-5 py-20 text-center text-white sm:px-8 lg:px-12">
+    <section className="bg-[#0119FE] px-5 py-16 text-center text-white sm:px-8 sm:py-20 lg:px-12">
       <Reveal>
         <Eyebrow light>Ready?</Eyebrow>
         <h2 className="font-black leading-[1.04]" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.5rem,5vw,4rem)" }}>WiFi for all.</h2>
-        <p className="mt-4 text-base text-white/65">Fast, reliable, and honest — for every home and business.</p>
+        <p className="mx-auto mt-4 max-w-xl text-base text-white/65">Fast, reliable, and honest — for every home and business.</p>
         <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <button onClick={() => onNav("Plans")} className="rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#0119FE]">See Plans</button>
           <button onClick={() => onNav("Contact")} className="rounded-full border border-white/55 px-8 py-4 text-sm font-semibold text-white">Apply Now</button>
@@ -932,11 +932,11 @@ function CtaBanner({ onNav }: { onNav: (page: PageName) => void }) {
 
 function Footer({ onNav }: { onNav: (page: PageName) => void }) {
   return (
-    <footer className="bg-[#0119FE] px-5 py-14 text-white sm:px-8 lg:px-12">
+    <footer className="bg-[#0119FE] px-5 py-12 text-white sm:px-8 sm:py-14 lg:px-12">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[2fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <Image src="/logos/white_logo.png" alt="FibeX" width={230} height={92} className="h-auto w-[230px]" />
+            <Image src="/logos/white_logo.png" alt="FibeX" width={230} height={92} className="h-auto w-[180px] sm:w-[230px]" />
           </div>
           <div className="mt-6 text-sm font-bold uppercase tracking-[0.35em] text-white/70 sm:text-base">True Speed. True Connection.</div>
           <p className="mt-5 max-w-md text-base leading-8 text-white/82 sm:text-lg">Honest, fast fiber internet for every Filipino household. No hidden fees. No runaround. Just real speed.</p>
@@ -945,7 +945,7 @@ function Footer({ onNav }: { onNav: (page: PageName) => void }) {
         <FooterColumn title="Company" items={["About", "Contact"]} onNav={onNav} />
         <div><h4 className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-white/60">Contact</h4><div className="grid gap-3 text-sm text-white/85"><span>sales@fibexph.com</span><span>0967-348-2428</span><span>(044) 305-8173</span><span>www.fibexph.com</span></div></div>
       </div>
-      <div className="mx-auto mt-12 flex max-w-7xl flex-col justify-between gap-5 border-t border-white/20 pt-7 text-xs text-white/68 sm:flex-row"><span>© 2025 FibeX Broadband Inc. All rights reserved. Philippines.</span><span className="rounded-full bg-[#F12400] px-5 py-2 font-black text-white" style={{ fontFamily: "Origin Heavy" }}>WiFi for All.</span></div>
+      <div className="mx-auto mt-12 flex max-w-7xl flex-col justify-between gap-5 border-t border-white/20 pt-7 text-xs text-white/68 sm:flex-row sm:items-center"><span>© 2025 FibeX Broadband Inc. All rights reserved. Philippines.</span><span className="w-fit rounded-full bg-[#F12400] px-5 py-2 font-black text-white" style={{ fontFamily: "Origin Heavy" }}>WiFi for All.</span></div>
     </footer>
   );
 }
