@@ -34,8 +34,8 @@ const geistMono = Geist_Mono({
 //   fontStyle: 'normal',
 // };
 
-const SITE_NAME = "FibeX";
-const SITE_TITLE = "FibeX — Honest & Reliable Internet for Filipinos";
+const SITE_NAME = "Fibex";
+const SITE_TITLE = "Fibex — Honest & Reliable Internet for Filipinos";
 const SITE_DESCRIPTION =
   "Every Filipino deserves internet that's honest, reliable, and truly felt. No fine print. No exaggerated claims. Just clear plans, fair pricing, and customer care that actually shows up.";
 const SITE_URL = "https://fibex.ph";
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   generator: "Next.js",
   keywords: [
-    "FibeX",
-    "FibeX Turbo",
+    "Fibex",
+    "Fibex Turbo",
     "Philippines internet",
     "Filipino ISP",
     "fiber internet Philippines",
@@ -61,9 +61,9 @@ export const metadata: Metadata = {
     "gaming internet",
     "fiber optic Philippines",
   ],
-  authors: [{ name: "FibeX Turbo Inc." }],
-  creator: "FibeX Turbo Inc.",
-  publisher: "FibeX Turbo Inc.",
+  authors: [{ name: "Fibex Turbo Inc." }],
+  creator: "Fibex Turbo Inc.",
+  publisher: "Fibex Turbo Inc.",
   category: "Telecommunications",
   robots: {
     index: true,
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
         url: "/logos/blue_logo.png",
         width: 1200,
         height: 630,
-        alt: "FibeX — True Speed, True Connection",
+        alt: "Fibex — True Speed, True Connection",
       },
     ],
   },

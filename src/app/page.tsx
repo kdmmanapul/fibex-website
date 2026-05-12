@@ -62,7 +62,7 @@ const whyItems = [
 
 const residentialPlans = [
   {
-    name: "FIBEX ELITE",
+    name: "Fibex ELITE",
     price: "999",
     speed: "200",
     unit: "Mbps",
@@ -70,7 +70,7 @@ const residentialPlans = [
     features: ["Unlimited data", "Free installation", "24/7 support", "Low latency"],
   },
   {
-    name: "FIBEX RUSH",
+    name: "Fibex RUSH",
     price: "1,499",
     speed: "300",
     unit: "Mbps",
@@ -78,7 +78,7 @@ const residentialPlans = [
     features: ["Unlimited data", "Priority support", "Stable video calls", "Low latency"],
   },
   {
-    name: "FIBEX BLAZE",
+    name: "Fibex BLAZE",
     price: "1,999",
     speed: "400",
     unit: "Mbps",
@@ -87,7 +87,7 @@ const residentialPlans = [
     featured: true,
   },
   {
-    name: "FIBEX TURBO",
+    name: "Fibex TURBO",
     price: "2,499",
     speed: "500",
     unit: "Mbps",
@@ -95,7 +95,7 @@ const residentialPlans = [
     features: ["Unlimited data", "VIP support", "Ultra-low latency", "Free installation"],
   },
   {
-    name: "FIBEX PREMIUM TURBO",
+    name: "Fibex PREMIUM TURBO",
     price: "7,999",
     speed: "1,000",
     unit: "Mbps",
@@ -152,38 +152,38 @@ const testimonials = [
   {
     name: "Maria Santos",
     location: "San Fernando, Pampanga",
-    plan: "FIBEX BLAZE",
+    plan: "Fibex BLAZE",
     text: "Finally, an ISP that actually delivers what they promise! I signed up for the BLAZE plan and my connection has been rock-solid since day one. No more buffering during our family video calls.",
   },
   {
     name: "Jomar Reyes",
     location: "Macabebe, Pampanga",
-    plan: "FIBEX RUSH",
-    text: "Nagtatrabaho ako sa bahay at dati palagi akong nag-a-apologize sa mga clients dahil sa connection. Since lumipat sa FibeX, wala na. Consistent speed, laging stable.",
+    plan: "Fibex RUSH",
+    text: "Nagtatrabaho ako sa bahay at dati palagi akong nag-a-apologize sa mga clients dahil sa connection. Since lumipat sa Fibex, wala na. Consistent speed, laging stable.",
   },
   {
     name: "Cafe de Pampa",
     location: "Apalit, Pampanga",
     plan: "BUSINESS PRO",
-    text: "We run a cafe and needed stable WiFi for both our POS system and customers. FibeX Business Pro has been flawless. Installation was fast, support is responsive. Highly recommend!",
+    text: "We run a cafe and needed stable WiFi for both our POS system and customers. Fibex Business Pro has been flawless. Installation was fast, support is responsive. Highly recommend!",
   },
   {
     name: "Angelo Cruz",
     location: "Bitas, Pampanga",
-    plan: "FIBEX TURBO",
+    plan: "Fibex TURBO",
     text: "Hindi ko inexpect na ganito ka-consistent ang connection. Gaming, streaming, work — kaya ng kaya. Worth every peso. No hidden charges, exactly as advertised.",
   },
   {
     name: "Dr. Liza Mendoza",
     location: "San Fernando, Pampanga",
     plan: "BUSINESS PLUS",
-    text: "Our clinic's telemedicine setup needed a reliable connection. FibeX delivered. The team was professional and the setup was clean. We've had zero downtime in months.",
+    text: "Our clinic's telemedicine setup needed a reliable connection. Fibex delivered. The team was professional and the setup was clean. We've had zero downtime in months.",
   },
   {
     name: "Ryan Buenaventura",
     location: "Masantol, Pampanga",
-    plan: "FIBEX ELITE",
-    text: "Matagal na kaming walang maaasahang internet dito sa amin. FibeX ang unang nagbigay ng tunay na fiber sa area namin. Grabe ang improvement sa aming pang-araw-araw.",
+    plan: "Fibex ELITE",
+    text: "Matagal na kaming walang maaasahang internet dito sa amin. Fibex ang unang nagbigay ng tunay na fiber sa area namin. Grabe ang improvement sa aming pang-araw-araw.",
   },
 ];
 
@@ -199,9 +199,9 @@ function getInitials(name: string) {
 const contacts = [
   { label: "Email", value: "sales@fibexph.com", note: "For plan inquiries & applications", icon: Mail },
   { label: "Mobile", value: "0967-348-2428", note: "Call or text anytime", icon: Phone },
-  { label: "Landline", value: "(044) 305-8173", note: "Office line, Monday to Friday", icon: Phone },
-  { label: "Main Office", value: "Panipuan, San Fernando, Pampanga", note: "Head office location", icon: MapPin },
-  { label: "Branch Office", value: "Batasan, Macabebe, Pampanga", note: "Serving Macabebe & Masantol", icon: Building2 },
+  { label: "Hotline", value: "0917-185-4410", note: "Call or text anytime", icon: Phone },
+  { label: "Main Office", value: "Boulevard Plaza, Dolores, San Fernando", note: "Head office location", icon: MapPin },
+  { label: "Branches", value: "Panipuan, San Fernando; Plaza Macabebe; MacArthur Highway, Apalit; Bitas-Batasan, Macabebe", note: "Serving Pampanga communities", icon: Building2 },
   { label: "Website", value: "www.fibexph.com", note: "Visit us online", icon: Globe2 },
 ];
 
@@ -242,7 +242,7 @@ function Header({ page, onNav }: { page: PageName; onNav: (page: PageName) => vo
     >
       <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
         <button className="flex items-center gap-3" onClick={() => onNav("Home")} aria-label="Go to home">
-          <Image src="/logos/blue_logo.png" alt="FibeX" width={132} height={48} className="h-8 w-auto" priority />
+          <Image src="/logos/blue_logo.png" alt="Fibex" width={132} height={48} className="h-8 w-auto" priority />
         </button>
 
         <nav className="hidden items-center gap-9 md:flex">
@@ -317,16 +317,16 @@ function Header({ page, onNav }: { page: PageName; onNav: (page: PageName) => vo
 function Hero({ onNav }: { onNav: (page: PageName) => void }) {
   return (
     <section id="home" className="relative overflow-hidden bg-[#ffffff] pt-[68px] lg:min-h-screen">
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 py-10 pb-12 sm:px-8 sm:py-12 lg:min-h-[calc(100vh-68px)] lg:px-12 lg:py-0 lg:pb-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1920px] px-5 pb-12 pt-10 sm:px-8 sm:pb-14 sm:pt-12 lg:min-h-[calc(100vh-68px)] lg:px-[clamp(2.5rem,4.2vw,5.5rem)] lg:pb-[96px] lg:pt-0">
         <motion.div
           initial={{ opacity: 0, y: -32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative z-30 mx-auto max-w-[560px] text-center sm:text-left lg:absolute lg:left-[calc(50%-clamp(520px,41vw,740px)+clamp(6rem,9vw,12rem))] lg:top-[clamp(2rem,7vh,4.5rem)] lg:mx-0"
+          className="relative z-30 max-w-[560px] text-left lg:absolute lg:left-[clamp(2.5rem,5vw,6rem)] lg:top-[clamp(4rem,10vh,7rem)]"
         >
           <h1 className="font-black leading-[0.92] tracking-[-0.055em] text-black sm:tracking-[-0.065em]" style={{ fontFamily: "Origin Heavy" }}>
-            <span className="block text-[clamp(2.8rem,14vw,5.6rem)] sm:text-[clamp(3.2rem,6.5vw,5.6rem)]">Zero lags,</span>
-            <span className="block text-[clamp(2.8rem,14vw,5.6rem)] text-[#0119FE] sm:text-[clamp(3.2rem,6.5vw,5.6rem)]">Stable wins</span>
+            <span className="block text-[clamp(3rem,14vw,5.6rem)] sm:text-[clamp(3.3rem,7vw,5.9rem)]">Zero lags,</span>
+            <span className="block text-[clamp(3rem,14vw,5.6rem)] text-[#0119FE] sm:text-[clamp(3.3rem,7vw,5.9rem)]">Stable wins</span>
           </h1>
           <p className="mt-5 max-w-md text-base font-semibold leading-8 text-black/65">Your journey starts here</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-0">
@@ -355,17 +355,17 @@ function Hero({ onNav }: { onNav: (page: PageName) => void }) {
         </motion.div>
 
         <motion.div
-          className="relative z-10 mx-auto mt-10 flex min-h-[360px] w-full max-w-[1700px] items-end justify-center overflow-hidden rounded-t-[32px] px-2 pt-6 sm:min-h-[540px] sm:rounded-t-[44px] sm:px-6 sm:pt-14 md:min-h-[640px] lg:absolute lg:bottom-0 lg:left-1/2 lg:mt-0 lg:min-h-0 lg:w-[clamp(1280px,96vw,1780px)] lg:max-w-none lg:-translate-x-1/2 lg:px-0 lg:pt-0"
+          className="pointer-events-none relative z-10 mx-auto -mt-3 flex min-h-[320px] w-full items-end justify-center overflow-hidden px-2 pt-6 sm:-mt-10 sm:min-h-[500px] sm:px-6 sm:pt-14 md:min-h-[540px] lg:absolute lg:inset-x-0 lg:bottom-[36px] lg:mt-0 lg:min-h-0 lg:overflow-visible lg:px-0 lg:pt-0"
           initial={{ opacity: 0, y: 46 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.18 }}
         >
-          <motion.div className="relative z-10 flex w-full justify-center lg:translate-y-[clamp(0rem,2vh,1.5rem)]">
-            <Image src="/assets/home-hero.png" alt="FibeX customers" width={1650} height={1820} priority className="h-[430px] w-auto max-w-none object-contain sm:h-[640px] md:h-[760px] lg:h-auto lg:w-full lg:max-w-none" />
+          <motion.div className="relative z-10 flex w-full justify-center lg:-translate-x-[clamp(2rem,5vw,6.5rem)] lg:translate-y-[clamp(0rem,1.5vh,1rem)]">
+            <Image src="/assets/home-hero.png" alt="Fibex customers" width={1650} height={1820} priority className="h-[350px] w-auto max-w-none object-contain sm:h-[540px] md:h-[600px] lg:h-auto lg:w-[clamp(1060px,76vw,1500px)] lg:max-w-none" />
           </motion.div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, x: 42 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="relative z-30 mx-auto mt-6 flex max-w-[700px] flex-col items-stretch sm:items-start lg:absolute lg:left-[calc(50%+clamp(640px,48vw,890px)-clamp(23rem,29vw,33rem))] lg:top-[clamp(10.5rem,28vh,17rem)] lg:mt-0 lg:max-w-[clamp(210px,18vw,340px)] lg:items-end">
+        <motion.div initial={{ opacity: 0, x: 42 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="relative z-30 ml-auto mt-[-4rem] flex max-w-[460px] flex-col items-stretch sm:mt-[-6rem] sm:items-end lg:absolute lg:bottom-[clamp(7rem,14vh,10rem)] lg:right-[clamp(2.5rem,5.6vw,7rem)] lg:mt-0 lg:max-w-[clamp(230px,18vw,340px)]">
           <div className="rounded-[1.5rem] bg-[#0119FE] p-6 text-left shadow-[0_24px_80px_rgba(1,25,254,0.25)] sm:rounded-[1.8rem] sm:p-8 lg:p-[clamp(1.25rem,2vw,2rem)] lg:text-right">
             <p className="font-black leading-[1.03] tracking-[-0.03em] text-white" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(1.85rem,2.75vw,3.4rem)" }}>
               Speed<br />promised.<br />Speed<br />delivered.
@@ -395,7 +395,7 @@ function WhyFibex() {
   return (
     <section className="bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
       <Reveal className="mx-auto max-w-3xl text-center">
-        <Eyebrow>Why FibeX</Eyebrow>
+        <Eyebrow>Why Fibex</Eyebrow>
         <h2 className="font-black leading-[1.02] tracking-[-0.03em] text-black" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.4rem,5vw,4rem)" }}>Built different.</h2>
       </Reveal>
       <div className="mx-auto mt-14 grid max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -432,7 +432,7 @@ function PlanCard({ plan, index, onApply }: { plan: Plan; index: number; onApply
       whileHover={{ y: -8, scale: 1.015 }}
     >
       {plan.featured && <div className="absolute right-4 top-4 rounded-full bg-[#F12400] px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em] text-white sm:right-5 sm:top-5 sm:px-4 sm:text-[10px] sm:tracking-[0.18em]">Popular</div>}
-      <p className={`mb-3 text-[10px] font-bold uppercase tracking-[0.35em] ${dark ? "text-white/45" : "text-black/45"}`}>FibeX</p>
+      <p className={`mb-3 text-[10px] font-bold uppercase tracking-[0.35em] ${dark ? "text-white/45" : "text-black/45"}`}>Fibex</p>
       <h3 className="min-h-12 pr-20 text-lg font-black leading-tight sm:text-xl" style={{ fontFamily: "Origin Heavy" }}>{plan.name}</h3>
       <div className="mt-6 flex items-end gap-2">
         <span className="text-[3.25rem] font-black leading-none sm:text-[4rem]" style={{ fontFamily: "Origin Heavy" }}>{plan.speed}</span>
@@ -523,8 +523,8 @@ function HomePlansPreview({ onNav }: { onNav: (page: PageName) => void }) {
                   transition={{ duration: 0.45, delay: index * 0.05 }}
                   whileHover={{ y: -6 }}
                 >
-                  <div className={`mb-2 text-[9px] font-bold uppercase tracking-[0.32em] ${dark ? "text-white/45" : "text-black/45"}`}>FibeX</div>
-                  <div className="mb-4 text-sm font-black leading-tight" style={{ fontFamily: "Origin Heavy" }}>{plan.name.replace("FIBEX ", "").replace("BUSINESS ", "")}</div>
+                  <div className={`mb-2 text-[9px] font-bold uppercase tracking-[0.32em] ${dark ? "text-white/45" : "text-black/45"}`}>Fibex</div>
+                  <div className="mb-4 text-sm font-black leading-tight" style={{ fontFamily: "Origin Heavy" }}>{plan.name.replace("Fibex ", "").replace("BUSINESS ", "")}</div>
                   <div className={`text-4xl font-black leading-none sm:text-5xl ${dark ? "text-white" : "text-[#0119FE]"}`} style={{ fontFamily: "Origin Heavy" }}>{plan.speed}</div>
                   <div className={`mt-1 text-xs ${dark ? "text-white/55" : "text-black/45"}`}>{plan.unit}</div>
                   <div className="mt-5 text-sm font-semibold">₱{plan.price}<span className="text-xs font-normal opacity-70">/mo</span></div>
@@ -546,7 +546,7 @@ function PlansSection({ onApply }: { onApply: () => void }) {
     <section id="plans" className="scroll-mt-20 bg-white">
       <div className="bg-[#0119FE] px-5 py-16 text-center text-white sm:px-8 sm:py-20 lg:px-12">
         <Reveal className="mx-auto max-w-3xl">
-          <Eyebrow light>FibeX Plans</Eyebrow>
+          <Eyebrow light>Fibex Plans</Eyebrow>
           <h1 className="font-black leading-[1.03] tracking-[-0.03em]" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(2.5rem,5vw,4.25rem)" }}>Pick your speed.</h1>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-white/70">All plans include unlimited data, free installation, and zero lock-in contracts. Prices exclusive of VAT.</p>
           <div className="mt-5 inline-flex rounded-full bg-[#F12400] px-6 py-2 text-xs font-black uppercase tracking-[0.12em]" style={{ fontFamily: "Origin Heavy" }}>No fine print. Just fast internet.</div>
@@ -706,7 +706,7 @@ function AboutSection({ onNav }: { onNav: (page: PageName) => void }) {
       <div className="relative h-[34vh] min-h-[240px] w-full overflow-hidden sm:h-[42vh] sm:min-h-[300px] lg:h-[56vh] lg:min-h-[420px]">
         <Image
           src="/assets/skyline_about.png"
-          alt="Skyline view for FibeX about section"
+          alt="Skyline view for Fibex about section"
           fill
           priority
           className="object-cover"
@@ -730,7 +730,7 @@ function AboutSection({ onNav }: { onNav: (page: PageName) => void }) {
           <Eyebrow>Our Story</Eyebrow>
           <h3 className="text-3xl font-black leading-tight text-black sm:text-4xl" style={{ fontFamily: "Origin Heavy" }}>Started with a simple belief.</h3>
           <div className="mt-7 space-y-5 text-sm leading-8 text-black/62">
-            <p>FibeX began with the conviction that every Filipino deserves internet that is honest, reliable, and truly felt.</p>
+            <p>Fibex began with the conviction that every Filipino deserves internet that is honest, reliable, and truly felt.</p>
             <p>No fine print. No exaggerated claims. Just clear plans, fair pricing, and customer care that actually shows up.</p>
             <p>What began as a challenger brand grew into a movement for fairness and transparency across households, students, and businesses.</p>
           </div>
@@ -738,7 +738,7 @@ function AboutSection({ onNav }: { onNav: (page: PageName) => void }) {
         <div className="grid gap-5">
           {[
             { title: "Est. 2021", desc: "Established in Pampanga with a mission to make honest fiber accessible." },
-            { title: "Built for Pampanga", desc: "Serving San Fernando, Macabebe, Apalit, Bitas, and Batasan." },
+            { title: "Built for Pampanga", desc: "Serving San Fernando, Santo Tomas, Minalin, Apalit, San Simon, Macabebe, and Masantol." },
             { title: "Registered & Secure", desc: "A duly registered corporation with a network built above industry standards." },
           ].map((card, index) => (
             <Reveal key={card.title} delay={index * 0.08}>
@@ -824,12 +824,12 @@ function ContactSection() {
       <div className="bg-[#0119FE] px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
           <Reveal>
-            <Eyebrow light>Contact FibeX</Eyebrow>
+            <Eyebrow light>Contact Fibex</Eyebrow>
             <h2 className="font-black leading-[1] tracking-[-0.03em]" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(3rem,6vw,5rem)" }}>We&apos;re here.<br />Let&apos;s connect.</h2>
             <p className="mt-5 max-w-xl text-sm leading-8 text-white/68">Tell us where you are, what you need, and our team will help you get connected.</p>
           </Reveal>
           <Reveal delay={0.1}>
-            <Image src="/assets/contact-customer-service.png" alt="FibeX customer service" width={760} height={520} className="h-auto w-full rounded-[1.5rem] object-cover shadow-2xl sm:rounded-[2rem]" />
+            <Image src="/assets/contact-customer-service.png" alt="Fibex customer service" width={760} height={520} className="h-auto w-full rounded-[1.5rem] object-cover shadow-2xl sm:rounded-[2rem]" />
           </Reveal>
         </div>
       </div>
@@ -936,16 +936,16 @@ function Footer({ onNav }: { onNav: (page: PageName) => void }) {
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[2fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <Image src="/logos/white_logo.png" alt="FibeX" width={230} height={92} className="h-auto w-[180px] sm:w-[230px]" />
+            <Image src="/logos/white_logo.png" alt="Fibex" width={230} height={92} className="h-auto w-[180px] sm:w-[230px]" />
           </div>
           <div className="mt-6 text-sm font-bold uppercase tracking-[0.35em] text-white/70 sm:text-base">True Speed. True Connection.</div>
           <p className="mt-5 max-w-md text-base leading-8 text-white/82 sm:text-lg">Honest, fast fiber internet for every Filipino household. No hidden fees. No runaround. Just real speed.</p>
         </div>
         <FooterColumn title="Plans" items={["Plans"]} onNav={onNav} />
         <FooterColumn title="Company" items={["About", "Contact"]} onNav={onNav} />
-        <div><h4 className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-white/60">Contact</h4><div className="grid gap-3 text-sm text-white/85"><span>sales@fibexph.com</span><span>0967-348-2428</span><span>(044) 305-8173</span><span>www.fibexph.com</span></div></div>
+        <div><h4 className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-white/60">Contact</h4><div className="grid gap-3 text-sm text-white/85"><span>sales@fibexph.com</span><span>0967-348-2428</span><span>0917-185-4410</span><span>www.fibexph.com</span></div></div>
       </div>
-      <div className="mx-auto mt-12 flex max-w-7xl flex-col justify-between gap-5 border-t border-white/20 pt-7 text-xs text-white/68 sm:flex-row sm:items-center"><span>© 2025 FibeX Broadband Inc. All rights reserved. Philippines.</span><span className="w-fit rounded-full bg-[#F12400] px-5 py-2 font-black text-white" style={{ fontFamily: "Origin Heavy" }}>WiFi for All.</span></div>
+      <div className="mx-auto mt-12 flex max-w-7xl flex-col justify-between gap-5 border-t border-white/20 pt-7 text-xs text-white/68 sm:flex-row sm:items-center"><span>© 2025 Fibex Broadband Inc. All rights reserved. Philippines.</span><span className="w-fit rounded-full bg-[#F12400] px-5 py-2 font-black text-white" style={{ fontFamily: "Origin Heavy" }}>WiFi for All.</span></div>
     </footer>
   );
 }
