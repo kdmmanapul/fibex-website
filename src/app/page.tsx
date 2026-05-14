@@ -316,13 +316,13 @@ function Header({ page, onNav }: { page: PageName; onNav: (page: PageName) => vo
 
 function Hero({ onNav }: { onNav: (page: PageName) => void }) {
   return (
-    <section id="home" className="relative overflow-hidden bg-[#ffffff] pt-[68px] lg:min-h-screen">
-      <div className="relative z-10 mx-auto w-full max-w-[1920px] px-5 pb-12 pt-10 sm:px-8 sm:pb-14 sm:pt-12 lg:min-h-[calc(100vh-68px)] lg:px-[clamp(2.5rem,4.2vw,5.5rem)] lg:pb-[96px] lg:pt-0">
+    <section id="home" className="relative overflow-hidden bg-[#ffffff] pt-[68px] min-[1700px]:min-h-screen">
+      <div className="relative z-10 mx-auto w-full max-w-[1920px] px-5 pb-0 pt-10 sm:px-8 sm:pt-12 lg:px-12 min-[1700px]:min-h-[calc(100vh-68px)] min-[1700px]:px-[clamp(2.5rem,4.2vw,5.5rem)] min-[1700px]:pb-[96px] min-[1700px]:pt-0">
         <motion.div
           initial={{ opacity: 0, y: -32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative z-30 max-w-[560px] text-left lg:absolute lg:left-[clamp(2.5rem,5vw,6rem)] lg:top-[clamp(4rem,10vh,7rem)]"
+          className="relative z-30 max-w-[560px] text-left min-[1700px]:absolute min-[1700px]:left-[clamp(2.5rem,5vw,6rem)] min-[1700px]:top-[clamp(4rem,10vh,7rem)]"
         >
           <h1 className="font-black leading-[0.92] tracking-[-0.055em] text-black sm:tracking-[-0.065em]" style={{ fontFamily: "Origin Heavy" }}>
             <span className="block text-[clamp(3rem,14vw,5.6rem)] sm:text-[clamp(3.3rem,7vw,5.9rem)]">Zero lags,</span>
@@ -355,17 +355,17 @@ function Hero({ onNav }: { onNav: (page: PageName) => void }) {
         </motion.div>
 
         <motion.div
-          className="pointer-events-none relative z-10 mx-auto -mt-3 flex min-h-[320px] w-full items-end justify-center overflow-hidden px-2 pt-6 sm:-mt-10 sm:min-h-[500px] sm:px-6 sm:pt-14 md:min-h-[540px] lg:absolute lg:inset-x-0 lg:bottom-[36px] lg:mt-0 lg:min-h-0 lg:overflow-visible lg:px-0 lg:pt-0"
+          className="pointer-events-none relative z-10 mx-auto -mt-3 flex min-h-[320px] w-full items-end justify-center overflow-hidden px-2 pt-6 sm:-mt-10 sm:min-h-[500px] sm:px-6 sm:pt-14 md:min-h-[540px] lg:mt-[-5rem] lg:min-h-[520px] lg:px-0 xl:min-h-[600px] min-[1700px]:absolute min-[1700px]:inset-x-0 min-[1700px]:bottom-[91px] min-[1700px]:mt-0 min-[1700px]:min-h-0 min-[1700px]:overflow-visible min-[1700px]:pt-0"
           initial={{ opacity: 0, y: 46 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.18 }}
         >
-          <motion.div className="relative z-10 flex w-full justify-center lg:-translate-x-[clamp(2rem,5vw,6.5rem)] lg:translate-y-[clamp(0rem,1.5vh,1rem)]">
-            <Image src="/assets/home-hero.png" alt="Fibex customers" width={1650} height={1820} priority className="h-[350px] w-auto max-w-none object-contain sm:h-[540px] md:h-[600px] lg:h-auto lg:w-[clamp(1060px,76vw,1500px)] lg:max-w-none" />
+          <motion.div className="relative z-10 flex w-full justify-center min-[1700px]:-translate-x-[clamp(2rem,5vw,6.5rem)]">
+            <Image src="/assets/home-hero.png" alt="Fibex customers" width={1650} height={1820} priority className="h-[350px] w-auto max-w-none translate-y-[clamp(2rem,5vw,4rem)] object-contain sm:h-[540px] md:h-[600px] lg:h-[560px] xl:h-[620px] min-[1700px]:!h-[clamp(520px,55vh,620px)] min-[1700px]:w-auto min-[1700px]:max-w-none min-[1700px]:translate-y-[clamp(1.75rem,3vh,3rem)]" />
           </motion.div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, x: 42 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="relative z-30 ml-auto mt-[-4rem] flex max-w-[460px] flex-col items-stretch sm:mt-[-6rem] sm:items-end lg:absolute lg:bottom-[clamp(7rem,14vh,10rem)] lg:right-[clamp(2.5rem,5.6vw,7rem)] lg:mt-0 lg:max-w-[clamp(230px,18vw,340px)]">
+        <motion.div initial={{ opacity: 0, x: 42 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="absolute inset-x-5 bottom-4 z-30 mx-auto flex max-w-[460px] flex-col items-stretch sm:inset-x-auto sm:right-8 sm:mx-0 sm:items-end lg:right-12 min-[1700px]:bottom-[clamp(7rem,14vh,10rem)] min-[1700px]:right-[clamp(2.5rem,5.6vw,7rem)] min-[1700px]:max-w-[clamp(230px,18vw,340px)]">
           <div className="rounded-[1.5rem] bg-[#0119FE] p-6 text-left shadow-[0_24px_80px_rgba(1,25,254,0.25)] sm:rounded-[1.8rem] sm:p-8 lg:p-[clamp(1.25rem,2vw,2rem)] lg:text-right">
             <p className="font-black leading-[1.03] tracking-[-0.03em] text-white" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(1.85rem,2.75vw,3.4rem)" }}>
               Speed<br />promised.<br />Speed<br />delivered.
@@ -377,7 +377,7 @@ function Hero({ onNav }: { onNav: (page: PageName) => void }) {
           </div>
         </motion.div>
       </div>
-      <div className="relative z-30 bg-black px-5 py-5 text-white lg:absolute lg:bottom-0 lg:left-0 lg:right-0">
+      <div className="relative z-30 bg-black px-5 py-5 text-white min-[1700px]:absolute min-[1700px]:bottom-0 min-[1700px]:left-0 min-[1700px]:right-0">
         <div className="mx-auto grid w-full grid-cols-1 gap-5 text-center sm:grid-cols-3">
           {stats.map((stat, index) => (
             <motion.div key={stat.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 + index * 0.12 }} className="border-white/10 sm:border-l first:sm:border-l-0">
