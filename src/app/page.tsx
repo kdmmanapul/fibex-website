@@ -316,68 +316,117 @@ function Header({ page, onNav }: { page: PageName; onNav: (page: PageName) => vo
 
 function Hero({ onNav }: { onNav: (page: PageName) => void }) {
   return (
-    <section id="home" className="relative overflow-hidden bg-[#ffffff] pt-[68px] min-[1700px]:min-h-screen">
-      <div className="relative z-10 mx-auto w-full max-w-[1920px] px-5 pb-0 pt-10 sm:px-8 sm:pt-12 lg:px-12 min-[1700px]:min-h-[calc(100vh-68px)] min-[1700px]:px-[clamp(2.5rem,4.2vw,5.5rem)] min-[1700px]:pb-[96px] min-[1700px]:pt-0">
+    <section id="home" className="relative overflow-hidden bg-white pt-[68px]">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1920px] flex-col items-center px-5 pb-10 pt-10 text-center sm:hidden">
         <motion.div
           initial={{ opacity: 0, y: -32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative z-30 max-w-[560px] text-left min-[1700px]:absolute min-[1700px]:left-[clamp(2.5rem,5vw,6rem)] min-[1700px]:top-[clamp(4rem,10vh,7rem)]"
+          className="relative z-30 flex w-full max-w-[560px] flex-col items-center text-center"
         >
-          <h1 className="font-black leading-[0.92] tracking-[-0.055em] text-black sm:tracking-[-0.065em]" style={{ fontFamily: "Origin Heavy" }}>
-            <span className="block text-[clamp(3rem,14vw,5.6rem)] sm:text-[clamp(3.3rem,7vw,5.9rem)]">Zero lags,</span>
-            <span className="block text-[clamp(3rem,14vw,5.6rem)] text-[#0119FE] sm:text-[clamp(3.3rem,7vw,5.9rem)]">Stable wins</span>
+          <h1 className="font-black leading-[0.92] tracking-normal text-black" style={{ fontFamily: "Origin Heavy" }}>
+            <span className="block text-[clamp(3rem,14vw,5.6rem)]">Zero lags,</span>
+            <span className="block text-[clamp(3rem,14vw,5.6rem)] text-[#0119FE]">Stable wins</span>
           </h1>
           <p className="mt-5 max-w-md text-base font-semibold leading-8 text-black/65">Your journey starts here</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-0">
+          <div className="mt-8 flex w-full max-w-[260px] flex-col gap-3">
             <motion.button
               onClick={() => onNav("Plans")}
-              className="inline-flex items-center justify-center rounded-full bg-[#0119FE] px-8 py-4 text-base font-semibold text-white shadow-[0_16px_40px_rgba(1,25,254,0.22)] transition hover:bg-[#0014d7] sm:mr-3 sm:px-9 sm:py-5"
+              className="inline-flex items-center justify-center rounded-full bg-[#0119FE] px-8 py-4 text-base font-semibold text-white shadow-[0_16px_40px_rgba(1,25,254,0.22)] transition hover:bg-[#0014d7]"
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               See Plans
               <ArrowRight className="ml-2 h-5 w-5" />
             </motion.button>
-            <motion.a
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="pointer-events-none relative z-10 mx-auto mt-7 flex w-full justify-center overflow-hidden px-2"
+          initial={{ opacity: 0, y: 46 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.18 }}
+        >
+          <motion.div className="relative z-10 flex w-full justify-center">
+            <Image src="/assets/home-hero.png" alt="Fibex customers" width={1650} height={1820} priority className="h-auto w-[132%] max-w-[560px] object-contain" />
+          </motion.div>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="relative z-30 mt-7 flex w-full max-w-[360px] flex-col items-center">
+          <div className="w-full rounded-[1.5rem] bg-[#0119FE] p-6 text-left shadow-[0_24px_80px_rgba(1,25,254,0.25)]">
+            <p className="font-black leading-[1.03] tracking-normal text-white" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(1.85rem,10vw,2.55rem)" }}>
+              Speed promised.<br />Speed delivered.
+            </p>
+          </div>
+          <div className="mt-4 flex w-full flex-col items-center">
+            <div className="w-full rounded-full bg-[#F12400] px-6 py-4 text-center text-base font-black text-white" style={{ fontFamily: "Origin Heavy" }}>as low as ₱999 / month</div>
+            <p className="mt-2 max-w-sm text-center text-sm leading-7 text-black/55"><strong>Unlimited data.</strong><br />Ideal for everyday streaming, gaming & WFH.</p>
+          </div>
+        </motion.div>
+      </div>
+
+      <div className="relative isolate z-10 mx-auto hidden min-h-[660px] w-full max-w-[1920px] overflow-hidden px-4 pt-5 sm:block sm:min-h-[760px] sm:px-6 sm:pt-8 md:min-h-[820px] lg:min-h-[760px] lg:px-10 xl:min-h-[830px] xl:px-14 2xl:min-h-[calc(100svh-140px)]">
+        <motion.div
+          initial={{ opacity: 0, y: -32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="absolute left-4 top-5 z-30 max-w-[360px] text-left sm:left-6 sm:top-8 sm:max-w-[560px] md:left-10 md:top-11 lg:left-14 lg:top-14 xl:left-20 xl:top-16"
+        >
+          <h1 className="font-black leading-[0.92] tracking-normal text-black drop-shadow-[0_5px_24px_rgba(255,255,255,0.9)]" style={{ fontFamily: "Origin Heavy" }}>
+            <span className="block text-[3rem] sm:text-[4.7rem] md:text-[5.6rem] lg:text-[6.1rem] xl:text-[6.8rem]">Zero lags,</span>
+            <span className="block text-[3rem] text-[#0119FE] sm:text-[4.7rem] md:text-[5.6rem] lg:text-[6.1rem] xl:text-[6.8rem]">Stable wins</span>
+          </h1>
+          <p className="mt-4 max-w-md text-base font-semibold leading-7 text-black/70 sm:mt-5 sm:text-lg">Your journey starts here</p>
+          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
+            <motion.button
+              onClick={() => onNav("Plans")}
+              className="inline-flex items-center justify-center rounded-full bg-[#0119FE] px-7 py-4 text-base font-semibold text-white shadow-[0_16px_40px_rgba(1,25,254,0.22)] transition hover:bg-[#0014d7] sm:px-8 sm:py-5"
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              See Plans
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </motion.button>
+            {/* <motion.a
               href="#xurecheck"
               onClick={(event) => {
                 event.preventDefault();
                 onNav("Plans");
               }}
-              className="inline-flex items-center justify-center rounded-full border-2 border-black bg-white/75 px-8 py-4 text-base font-semibold text-black backdrop-blur-sm transition hover:bg-black hover:text-white sm:px-9 sm:py-5"
+              className="inline-flex items-center justify-center rounded-full border-2 border-black bg-white/85 px-7 py-4 text-base font-semibold text-black backdrop-blur-sm transition hover:bg-black hover:text-white sm:px-8 sm:py-5"
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               Try XureCheck
-            </motion.a>
+            </motion.a> */}
           </div>
         </motion.div>
 
         <motion.div
-          className="pointer-events-none relative z-10 mx-auto -mt-3 flex min-h-[320px] w-full items-end justify-center overflow-hidden px-2 pt-6 sm:-mt-10 sm:min-h-[500px] sm:px-6 sm:pt-14 md:min-h-[540px] lg:mt-[-5rem] lg:min-h-[520px] lg:px-0 xl:min-h-[600px] min-[1700px]:absolute min-[1700px]:inset-x-0 min-[1700px]:bottom-[91px] min-[1700px]:mt-0 min-[1700px]:min-h-0 min-[1700px]:overflow-visible min-[1700px]:pt-0"
-          initial={{ opacity: 0, y: 46 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center"
+          initial={{ opacity: 0, y: 48, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.18 }}
         >
-          <motion.div className="relative z-10 flex w-full justify-center min-[1700px]:-translate-x-[clamp(2rem,5vw,6.5rem)]">
-            <Image src="/assets/home-hero.png" alt="Fibex customers" width={1650} height={1820} priority className="h-[350px] w-auto max-w-none translate-y-[clamp(2rem,5vw,4rem)] object-contain sm:h-[540px] md:h-[600px] lg:h-[560px] xl:h-[620px] min-[1700px]:!h-[clamp(520px,55vh,620px)] min-[1700px]:w-auto min-[1700px]:max-w-none min-[1700px]:translate-y-[clamp(1.75rem,3vh,3rem)]" />
+          <motion.div className="relative z-10 flex w-full justify-center">
+            <Image src="/assets/home-hero.png" alt="Fibex customers" width={1650} height={1820} priority className="h-auto w-[118%] max-w-[760px] object-contain sm:w-[108%] sm:max-w-[980px] sm:translate-y-[2.25rem] md:max-w-[1120px] md:translate-y-[2.75rem] lg:w-[88%] lg:max-w-[1220px] lg:translate-y-[3.25rem] xl:max-w-[1350px] min-[1351px]:!w-[96%] min-[1351px]:!max-w-[1550px] min-[1351px]:translate-y-[4rem] min-[1700px]:!max-w-[1650px] min-[1700px]:translate-y-[5rem]" />
           </motion.div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, x: 42 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="absolute inset-x-5 bottom-4 z-30 mx-auto flex max-w-[460px] flex-col items-stretch sm:inset-x-auto sm:right-8 sm:mx-0 sm:items-end lg:right-12 min-[1700px]:bottom-[clamp(7rem,14vh,10rem)] min-[1700px]:right-[clamp(2.5rem,5.6vw,7rem)] min-[1700px]:max-w-[clamp(230px,18vw,340px)]">
-          <div className="rounded-[1.5rem] bg-[#0119FE] p-6 text-left shadow-[0_24px_80px_rgba(1,25,254,0.25)] sm:rounded-[1.8rem] sm:p-8 lg:p-[clamp(1.25rem,2vw,2rem)] lg:text-right">
-            <p className="font-black leading-[1.03] tracking-[-0.03em] text-white" style={{ fontFamily: "Origin Heavy", fontSize: "clamp(1.85rem,2.75vw,3.4rem)" }}>
+        <motion.div initial={{ opacity: 0, x: 36 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.28 }} className="absolute bottom-5 right-4 z-30 flex max-w-[310px] flex-col items-end sm:bottom-8 sm:right-6 sm:max-w-[390px] md:right-10 lg:bottom-10 lg:right-14 xl:right-20">
+          <div className="rounded-[1.25rem] bg-[#0119FE] p-5 text-right shadow-[0_24px_80px_rgba(1,25,254,0.25)] sm:rounded-[1.5rem] sm:p-7 lg:p-8">
+            <p className="font-black leading-[1.03] tracking-normal text-[2rem] text-white sm:text-[2.7rem] lg:text-[3.2rem]" style={{ fontFamily: "Origin Heavy" }}>
               Speed<br />promised.<br />Speed<br />delivered.
             </p>
           </div>
-          <div className="mt-4 flex flex-col items-stretch sm:items-start lg:items-end">
-            <div className="rounded-full bg-[#F12400] px-6 py-4 text-center text-base font-black text-white sm:px-10 sm:text-lg" style={{ fontFamily: "Origin Heavy" }}>as low as ₱999 / month</div>
-            <p className="mt-2 max-w-sm text-sm leading-7 text-black/55 lg:text-right"><strong>Unlimited data.</strong><br />Ideal for everyday streaming, gaming & WFH.</p>
+          <div className="mt-3 flex flex-col items-end sm:mt-4">
+            <div className="rounded-full bg-[#F12400] px-5 py-3 text-center text-sm font-black text-white sm:px-8 sm:py-4 sm:text-lg" style={{ fontFamily: "Origin Heavy" }}>as low as ₱999 / month</div>
+            <p className="mt-2 max-w-[270px] text-right text-sm leading-6 text-black/60 sm:max-w-sm sm:leading-7"><strong>Unlimited data.</strong><br />Ideal for everyday streaming, gaming & WFH.</p>
           </div>
         </motion.div>
       </div>
-      <div className="relative z-30 bg-black px-5 py-5 text-white min-[1700px]:absolute min-[1700px]:bottom-0 min-[1700px]:left-0 min-[1700px]:right-0">
+      <div className="relative z-30 bg-black px-5 py-5 text-white">
         <div className="mx-auto grid w-full grid-cols-1 gap-5 text-center sm:grid-cols-3">
           {stats.map((stat, index) => (
             <motion.div key={stat.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 + index * 0.12 }} className="border-white/10 sm:border-l first:sm:border-l-0">
